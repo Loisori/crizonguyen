@@ -17,7 +17,7 @@ export default function Project() {
 
             <div className="mt-8 space-y-4">
               <h3 className="text-2xl font-semibold leading-none text-white sm:text-3xl">
-                Channel name
+                {project.title}
               </h3>
               <p className="text-xl leading-none text-zinc-500 sm:text-2xl">{project.year}</p>
             </div>

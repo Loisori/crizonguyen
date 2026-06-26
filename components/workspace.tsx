@@ -1,9 +1,4 @@
-const steps = [
-  "Review the campaign summary",
-  "Inspect risk and funding signals",
-  "Share notes with the investment team",
-  "Publish the final decision",
-];
+import { workspaceSteps } from "@/constants/workspace";
 
 export default function Workspace() {
   return (
@@ -40,7 +35,7 @@ export default function Workspace() {
           Workflow
         </p>
         <div className="mt-5 space-y-3">
-          {steps.map((step, index) => (
+          {workspaceSteps.map((step, index) => (
             <div
               key={step}
               className="flex items-center gap-4 rounded-2xl bg-white px-4 py-4 shadow-sm"

@@ -1,11 +1,5 @@
 import Link from "next/link";
-const navigationItems = [
-  "About Me",
-  "Workspace",
-  "Project",
-  "Case Study",
-  "Let's Work",
-];
+import { navigationItems } from "@/constants/header";
 
 export default function Header() {
   return (

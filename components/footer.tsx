@@ -1,15 +1,4 @@
-const contactActions = [
-  {
-    label: "Chat on Instagram",
-    href: "https://www.instagram.com/",
-    icon: "instagram",
-  },
-  {
-    label: "Send an Email",
-    href: "mailto:hello@example.com",
-    icon: "email",
-  },
-];
+import { contactActions } from "@/constants/contact";
 
 export default function Footer() {
   return (

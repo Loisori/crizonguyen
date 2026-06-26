@@ -1,16 +1,4 @@
-const stats = [
-  { value: "+68", label: "Project Done" },
-  { value: "+5", label: "Years Experience" },
-  { value: "+100", label: "Partner Clients" },
-];
-
-const tools = [
-  { label: "Ae", className: "border-white/80 bg-[#23146f] text-[#bdb3ff]" },
-  { label: "Pr", className: "border-white/80 bg-[#170a6b] text-[#c6b8ff]" },
-  { label: "Da", className: "border-emerald-300 bg-[#111827] text-white" },
-];
-
-const clients = ["N", "A", "Apple", "M", "V"];
+import { bannerClients, bannerStats, bannerTools } from "@/constants/banner";
 
 export default function Banner() {
   return (
@@ -43,7 +31,7 @@ export default function Banner() {
             </p>
 
             <div className="mt-9 flex gap-3 sm:gap-4">
-              {tools.map((tool) => (
+              {bannerTools.map((tool) => (
                 <div
                   key={tool.label}
                   className={`flex h-20 w-20 items-center justify-center rounded-2xl border-4 text-4xl font-black shadow-[0_0_24px_rgba(255,255,255,0.18)] sm:h-24 sm:w-24 sm:text-5xl ${tool.className}`}
@@ -57,7 +45,7 @@ export default function Banner() {
 
           <div className="flex flex-col gap-12 lg:items-end">
             <div className="grid w-full grid-cols-3 gap-5 lg:max-w-[40rem]">
-              {stats.map((stat) => (
+              {bannerStats.map((stat) => (
                 <article key={stat.label} className="text-center lg:text-left">
                   <p className="text-[clamp(3.25rem,5vw,6rem)] font-black leading-none text-white drop-shadow-[0_0_14px_rgba(255,255,255,0.5)]">
                     {stat.value}
@@ -68,7 +56,7 @@ export default function Banner() {
             </div>
 
             <div className="grid w-full grid-cols-5 gap-3 lg:max-w-[44rem] lg:gap-8">
-              {clients.map((client) => (
+              {bannerClients.map((client) => (
                 <div
                   key={client}
                   className="flex aspect-square items-center justify-center rounded-full bg-white/55 text-sm font-black text-black shadow-[inset_0_18px_35px_rgba(255,255,255,0.35),0_20px_60px_rgba(0,0,0,0.35)] grayscale sm:text-xl"
