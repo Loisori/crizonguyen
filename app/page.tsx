@@ -12,9 +12,9 @@ export default function Home() {
         <Header />
         <Banner />
         {/* <Workspace /> */}
-        <Project />
-        <CaseStudy />
-        <Footer />
+        {/* <Project /> */}
+        {/* <CaseStudy /> */}
+        {/* <Footer /> */}
       </div>
     </main>
   );

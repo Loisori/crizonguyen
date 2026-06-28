@@ -8,7 +8,7 @@ export default function Banner() {
 
       <DecorativeShapes />
 
-      <p className="pointer-events-none absolute left-6 top-[12%] select-none text-[clamp(7rem,21vw,27rem)] font-black leading-none tracking-normal text-white/[0.11] drop-shadow-[0_0_18px_rgba(255,255,255,0.22)] sm:left-16">
+      <p className="whitespace-nowrap pointer-events-none absolute left-6 top-[12%] select-none text-[clamp(7rem,21vw,27rem)] font-black leading-none tracking-normal text-white/[0.11] drop-shadow-[0_0_18px_rgba(255,255,255,0.22)] sm:left-16">
         Video Editor
       </p>
       <p className="pointer-events-none absolute left-[34%] top-[13%] hidden -rotate-12 select-none text-5xl font-light italic text-white/35 lg:block">
@@ -50,7 +50,9 @@ export default function Banner() {
                   <p className="text-[clamp(3.25rem,5vw,6rem)] font-black leading-none text-white drop-shadow-[0_0_14px_rgba(255,255,255,0.5)]">
                     {stat.value}
                   </p>
-                  <p className="mt-4 text-sm text-white/85 sm:text-xl">{stat.label}</p>
+                  <p className="mt-4 text-sm text-white/85 sm:text-xl">
+                    {stat.label}
+                  </p>
                 </article>
               ))}
             </div>

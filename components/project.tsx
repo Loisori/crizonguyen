@@ -1,17 +1,27 @@
+import { Reveal } from "@/components/common/reveal";
 import { ProjectItem } from "@/constants/project";
 
 export default function Project() {
   return (
-    <section id="project" className="bg-black px-5 py-16 text-white sm:px-8 lg:px-16">
-      <h2 className="max-w-4xl text-[clamp(3.5rem,7vw,7.5rem)] font-black leading-[0.85] text-white drop-shadow-[0_0_22px_rgba(255,255,255,0.7)]">
-        Outstanding project
-      </h2>
+    <section
+      id="project"
+      className="bg-black px-5 py-16 text-white sm:px-8 lg:px-16"
+    >
+      <Reveal>
+        <h2 className="max-w-4xl text-[clamp(3.5rem,7vw,7.5rem)] font-black leading-[0.85] text-white drop-shadow-[0_0_22px_rgba(255,255,255,0.7)]">
+          Outstanding project
+        </h2>
+      </Reveal>
 
       <div className="mt-16 grid gap-x-8 gap-y-12 lg:grid-cols-2">
         {ProjectItem.map((project, index) => (
           <article key={`${project.title}-${index}`} className="group">
             <div className="relative aspect-[1.58/1] overflow-hidden bg-zinc-900">
-              {project.variant === "brand" ? <BrandBrainArtwork /> : <TravelArtwork />}
+              {project.variant === "brand" ? (
+                <BrandBrainArtwork />
+              ) : (
+                <TravelArtwork />
+              )}
               <div className="absolute inset-0 bg-black/35 transition-colors duration-300 group-hover:bg-black/15" />
             </div>
 
@@ -19,7 +29,9 @@ export default function Project() {
               <h3 className="text-2xl font-semibold leading-none text-white sm:text-3xl">
                 {project.title}
               </h3>
-              <p className="text-xl leading-none text-zinc-500 sm:text-2xl">{project.year}</p>
+              <p className="text-xl leading-none text-zinc-500 sm:text-2xl">
+                {project.year}
+              </p>
             </div>
           </article>
         ))}

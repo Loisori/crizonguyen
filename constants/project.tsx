@@ -9,4 +9,34 @@ export const ProjectItem = [
     year: "2026",
     variant: "travel",
   },
+    {
+    title: "Thailand Travel Vlog",
+    year: "2026",
+    variant: "travel",
+  },
+    {
+    title: "Thailand Travel Vlog",
+    year: "2026",
+    variant: "travel",
+  },
+    {
+    title: "Thailand Travel Vlog",
+    year: "2026",
+    variant: "travel",
+  },
+    {
+    title: "Thailand Travel Vlog",
+    year: "2026",
+    variant: "travel",
+  },
+    {
+    title: "Thailand Travel Vlog",
+    year: "2026",
+    variant: "travel",
+  },
+    {
+    title: "Thailand Travel Vlog",
+    year: "2026",
+    variant: "travel",
+  },
 ];
