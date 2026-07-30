@@ -5,9 +5,57 @@ export const bannerStats = [
 ];
 
 export const bannerTools = [
-  { label: "Ae", className: "border-white/80 bg-[#23146f] text-[#bdb3ff]" },
-  { label: "Pr", className: "border-white/80 bg-[#170a6b] text-[#c6b8ff]" },
-  { label: "Da", className: "border-emerald-300 bg-[#111827] text-white" },
+  {
+    label: "Ae",
+    alt: "Adobe After Effects",
+    src: "/icons/tools/AE.png",
+  },
+  {
+    label: "Pr",
+    alt: "Adobe Premiere Pro",
+    src: "/icons/tools/PR.png",
+  },
+  {
+    label: "Da",
+    alt: "DaVinci Resolve",
+    src: "/icons/tools/DA.png",
+  },
 ];
 
-export const bannerClients = ["N", "A", "Apple", "M", "V"];
+export const bannerClients = [
+  {
+    name: "Brand 1",
+    alt: "Brand logo 1",
+    src: "/icons/brands/1.png",
+  },
+  {
+    name: "Brand 2",
+    alt: "Brand logo 2",
+    src: "/icons/brands/2.png",
+  },
+  {
+    name: "Brand 3",
+    alt: "Brand logo 3",
+    src: "/icons/brands/3.png",
+  },
+  {
+    name: "Brand 4",
+    alt: "Brand logo 4",
+    src: "/icons/brands/4.png",
+  },
+  {
+    name: "Brand 5",
+    alt: "Brand logo 5",
+    src: "/icons/brands/5.png",
+  },
+  {
+    name: "Brand 6",
+    alt: "Brand logo 6",
+    src: "/icons/brands/6.png",
+  },
+  {
+    name: "Brand 7",
+    alt: "Brand logo 7",
+    src: "/icons/brands/7.png",
+  },
+];

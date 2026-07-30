@@ -1,63 +1,112 @@
+"use client";
+
+import Image from "next/image";
+import { motion, type Variants } from "framer-motion";
+
 import { contactActions } from "@/constants/contact";
+
+const footerTransition = {
+  duration: 1,
+  ease: [0.25, 1, 0.5, 1] as const,
+  type: "tween" as const,
+};
+
+const footerSectionVariants: Variants = {
+  hidden: {},
+  visible: {},
+};
+
+const backgroundTextVariants: Variants = {
+  hidden: { opacity: 0, y: -100 },
+  visible: { opacity: 1, y: 0, transition: footerTransition },
+};
+
+const footerImageVariants: Variants = {
+  hidden: { opacity: 0, y: 150 },
+  visible: { opacity: 1, y: 0, transition: footerTransition },
+};
+
+const leftContentVariants: Variants = {
+  hidden: { opacity: 0, x: -100 },
+  visible: { opacity: 1, x: 0, transition: footerTransition },
+};
+
+const rightContentVariants: Variants = {
+  hidden: { opacity: 0, x: 100 },
+  visible: { opacity: 1, x: 0, transition: footerTransition },
+};
 
 export default function Footer() {
   return (
-    <footer
+    <motion.footer
       id="let's-work"
       className="relative left-1/2 min-h-[760px] w-screen -translate-x-1/2 overflow-hidden bg-[#08090d] px-5 pt-28 text-white sm:px-10 lg:min-h-[980px] lg:px-20"
+      initial="hidden"
+      animate="hidden"
+      whileHover="visible"
+      variants={footerSectionVariants}
     >
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_82%,rgba(18,74,255,0.96),transparent_42%),linear-gradient(180deg,#08090d_0%,#0a0a0d_48%,#062fc7_100%)]" />
       <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.2)_0%,transparent_42%,rgba(0,0,0,0.08)_100%)]" />
 
-      <div className="pointer-events-none absolute inset-x-0 top-[9%] select-none text-center text-[clamp(7rem,18vw,24rem)] font-black leading-none text-white/[0.12] drop-shadow-[0_0_16px_rgba(255,255,255,0.2)]">
+      <motion.div
+        className="font-heathergreen pointer-events-none absolute inset-x-0 top-[9%] select-none text-center text-[clamp(7rem,18vw,24rem)] font-black leading-none text-white/[0.12] drop-shadow-[0_0_16px_rgba(255,255,255,0.2)]"
+        variants={backgroundTextVariants}
+      >
         Let&apos;s Work Together
-      </div>
+      </motion.div>
 
-      <div className="pointer-events-none absolute left-[22%] top-[52%] hidden select-none text-[clamp(4rem,7vw,9rem)] font-black leading-none text-white/[0.08] lg:block">
-        Nam Nguyen
-      </div>
-      <div className="pointer-events-none absolute right-[23%] top-[53%] hidden select-none text-[clamp(4rem,7vw,9rem)] font-black leading-none text-white/[0.08] lg:block">
-        Video Editor
-      </div>
+      <motion.div variants={rightContentVariants}>
+        <div className="font-heathergreen pointer-events-none absolute left-[22%] top-[52%] hidden select-none text-[clamp(4rem,7vw,9rem)] font-black leading-none text-white/[0.08] lg:block">
+          Nam Nguyen
+        </div>
+        <div className="font-heathergreen pointer-events-none absolute right-[23%] top-[53%] hidden select-none text-[clamp(4rem,7vw,9rem)] font-black leading-none text-white/[0.08] lg:block">
+          Video Editor
+        </div>
+      </motion.div>
 
       <DecorativeBurst />
 
       <div className="relative z-10 mx-auto flex min-h-[630px] max-w-[108rem] flex-col items-center justify-end lg:min-h-[820px]">
-        <div className="absolute bottom-0 left-1/2 h-[82%] w-[36rem] max-w-[115vw] -translate-x-1/2">
-          <FooterPortrait />
-        </div>
+        <motion.div
+          className="absolute left-1/2 size-[100rem] -translate-x-1/2 "
+          variants={footerImageVariants}
+        >
+          <FooterBannerImage />
+        </motion.div>
 
-        <div className="relative z-20 mb-[9.5rem] grid w-full max-w-[54rem] gap-4 sm:grid-cols-2">
+        <motion.div
+          className="relative z-20 mb-[9.5rem] grid gap-rem sm:grid-cols-2"
+          variants={leftContentVariants}
+        >
           {contactActions.map((action) => (
             <a
               key={action.label}
               href={action.href}
-              className="flex h-20 items-center justify-center gap-5 rounded-full border border-white/20 bg-black px-8 text-xl font-semibold text-white/80 shadow-[0_14px_45px_rgba(0,0,0,0.45)] transition duration-200 hover:-translate-y-1 hover:text-white hover:shadow-[0_18px_60px_rgba(0,0,0,0.58)] sm:text-2xl"
+              className="flex w-[38rem] h-[7.5rem] items-center justify-center gap-5 rounded-full border border-white/20 bg-black text-h5 text-[#C5C5C5] shadow-[0_14px_45px_rgba(0,0,0,0.45)] transition-all duration-300 
+              hover:bg-[radial-gradient(circle,_#1C7AE5_0%,_#D8D6D6_100%)] hover:text-black"
             >
               {action.icon === "instagram" ? <InstagramIcon /> : <EmailIcon />}
               <span>{action.label}</span>
             </a>
           ))}
-        </div>
+        </motion.div>
       </div>
-    </footer>
+    </motion.footer>
   );
 }
 
-function FooterPortrait() {
+function FooterBannerImage() {
   return (
-    <div className="absolute inset-x-0 bottom-0 h-full">
-      <div className="absolute left-[28%] top-[1%] h-[36%] w-[44%] rounded-[45%_45%_48%_48%] bg-[#070707] shadow-[0_0_60px_rgba(255,255,255,0.16)]" />
-      <div className="absolute left-[30%] top-[14%] h-[40%] w-[40%] rounded-[46%] bg-[#d7dce5]" />
-      <div className="absolute left-[28%] top-[3%] h-[21%] w-[44%] rounded-[50%_50%_35%_35%] bg-[#0b0b0d]" />
-      <div className="absolute left-[25%] top-[10%] h-[15%] w-[50%] rounded-[55%_55%_36%_36%] bg-[#0b0b0d]" />
-      <div className="absolute left-[36%] top-[31%] h-4 w-4 rounded-full bg-black" />
-      <div className="absolute right-[36%] top-[31%] h-4 w-4 rounded-full bg-black" />
-      <div className="absolute left-[46%] top-[43%] h-[2%] w-[8%] rounded-full bg-black/60" />
-      <div className="absolute left-[32%] top-[53%] h-[6%] w-[36%] rounded-b-full bg-[#c8ced8]" />
-      <div className="absolute bottom-0 left-[6%] h-[37%] w-[88%] rounded-t-[48%] bg-[#08090d]" />
-      <div className="absolute bottom-0 left-[16%] h-[51%] w-[68%] rounded-t-[42%] bg-[#0c0d12]" />
-      <div className="absolute inset-x-0 bottom-0 h-[48%] bg-[linear-gradient(180deg,transparent,rgba(4,46,206,0.84)_55%,rgba(4,46,206,0.98)_100%)]" />
+    <div className="relative h-full w-full">
+      <Image
+        alt="Nam Nguyen footer banner portrait"
+        src="/imgs/footer_banner.png"
+        fill
+        priority
+        sizes="(min-width: 1280px) 50rem, (min-width: 768px) 80vw, 104vw"
+        className="object-contain object-center drop-shadow-[0_30px_90px_rgba(0,0,0,0.65)]"
+      />
     </div>
   );
 }
@@ -65,9 +114,7 @@ function FooterPortrait() {
 function DecorativeBurst() {
   return (
     <div aria-hidden="true" className="pointer-events-none absolute inset-0">
-      <div className="absolute right-[28%] top-[8%] h-24 w-24 rotate-12 bg-white/25 [clip-path:polygon(45%_0,57%_0,57%_35%,88%_18%,96%_28%,67%_50%,96%_72%,88%_82%,57%_65%,57%_100%,45%_100%,45%_65%,12%_82%,4%_72%,33%_50%,4%_28%,12%_18%,45%_35%)]" />
-      <div className="absolute left-[8%] top-[12%] h-80 w-10 bg-white/18" />
-      <div className="absolute right-[9%] top-[12%] h-80 w-10 bg-white/18" />
+      <div className="absolute right-[28%] top-[8%] size-24 rotate-12 bg-white/25 [clip-path:polygon(45%_0,57%_0,57%_35%,88%_18%,96%_28%,67%_50%,96%_72%,88%_82%,57%_65%,57%_100%,45%_100%,45%_65%,12%_82%,4%_72%,33%_50%,4%_28%,12%_18%,45%_35%)]" />
     </div>
   );
 }

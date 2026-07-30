@@ -1,7 +1,11 @@
 @use "tailwindcss";
 @use "./main.scss";
-  
+
 @theme {
+  --font-sf: var(--font-sf-pro-display), sans-serif;
+  --font-heathergreen: var(--font-heathergreen), sans-serif;
+  --font-1k-reey: var(--font-1k-reey), sans-serif;
+
   /* Font sizes */
   --text-smallest: 1.2rem;
   --text-smaller: 1.4rem;

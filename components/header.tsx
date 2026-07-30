@@ -14,7 +14,7 @@ export default function Header() {
             >
               <Link
                 href={`#${item.toLowerCase().replace(" ", "-")}`}
-                className="size-full block text-center"
+                className="size-full block text-center font-sf"
               >
                 {item}
               </Link>

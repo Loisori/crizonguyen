@@ -1,56 +1,123 @@
-import { workspaceSteps } from "@/constants/workspace";
+"use client";
 
-export default function Workspace() {
+import { useState, useRef, useEffect } from "react";
+import { Play, Pause, Volume2, VolumeX, Maximize } from "lucide-react";
+
+export default function WorkspaceVideo() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
+  const [progress, setProgress] = useState(0);
+
+  // Play / Pause toggle
+  const togglePlay = () => {
+    if (!videoRef.current) return;
+    if (isPlaying) {
+      videoRef.current.pause();
+    } else {
+      videoRef.current.play();
+    }
+    setIsPlaying(!isPlaying);
+  };
+
+  // Mute toggle
+  const toggleMute = () => {
+    if (!videoRef.current) return;
+    videoRef.current.muted = !isMuted;
+    setIsMuted(!isMuted);
+  };
+
+  // Update progress bar as video plays
+  const handleTimeUpdate = () => {
+    if (!videoRef.current) return;
+    const currentProgress =
+      (videoRef.current.currentTime / videoRef.current.duration) * 100;
+    setProgress(currentProgress || 0);
+  };
+
+  // Scrub through the timeline
+  const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!videoRef.current) return;
+    const newTime = (parseFloat(e.target.value) / 100) * videoRef.current.duration;
+    videoRef.current.currentTime = newTime;
+    setProgress(parseFloat(e.target.value));
+  };
+
+  // Toggle Fullscreen
+  const toggleFullscreen = () => {
+    if (!videoRef.current) return;
+    if (document.fullscreenElement) {
+      document.exitFullscreen();
+    } else {
+      videoRef.current.requestFullscreen();
+    }
+  };
+
   return (
-    <section
-      id="workspace"
-      className="grid gap-6 rounded-[1.75rem] border border-slate-200 bg-white p-6 shadow-sm lg:grid-cols-[0.95fr_1.05fr] sm:p-8"
-    >
-      <div className="space-y-4">
-        <p className="text-sm font-medium uppercase tracking-[0.3em] text-sky-700">
-          Workspace
-        </p>
-        <h2 className="text-2xl font-semibold tracking-tight text-slate-950 sm:text-3xl">
-          A simple decision workspace sample
-        </h2>
-        <p className="text-sm leading-7 text-slate-600 sm:text-base">
-          This component gives the page a dashboard-style ending with a compact
-          task flow, notes area, and status summary.
-        </p>
+    <section id="workspace" className="p-0!">
+      {/* Outer Card Container */}
+      <div className="relative group overflow-hidden">
+        {/* Video Element */}
+        <video
+          ref={videoRef}
+          src="/videos/Draft.mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
+          onTimeUpdate={handleTimeUpdate}
+          onClick={togglePlay}
+          className="w-full aspect-video object-cover cursor-pointer"
+        />
 
-        <div className="rounded-[1.5rem] bg-slate-950 p-5 text-white">
-          <p className="text-sm text-slate-300">Decision status</p>
-          <p className="mt-2 text-3xl font-semibold tracking-tight text-emerald-300">
-            Ready for review
-          </p>
-          <p className="mt-3 text-sm leading-6 text-slate-300">
-            All campaign data is consolidated here so the team can move from
-            exploration to action without jumping across screens.
-          </p>
-        </div>
-      </div>
-
-      <div className="rounded-[1.5rem] border border-slate-200 bg-slate-50 p-5">
-        <p className="text-sm font-medium uppercase tracking-[0.25em] text-slate-500">
-          Workflow
-        </p>
-        <div className="mt-5 space-y-3">
-          {workspaceSteps.map((step, index) => (
+        {/* Floating Custom Controls Overlay */}
+        <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-[2px]">
+          
+          {/* 1. Scrubber / Progress Bar */}
+          <div className="relative w-full h-1.5 bg-white/20 rounded-full mb-3 cursor-pointer overflow-hidden group/bar">
+            <input
+              type="range"
+              min="0"
+              max="100"
+              value={progress}
+              onChange={handleSeek}
+              className="absolute inset-0 w-full h-full opacity-0 z-10 cursor-pointer"
+            />
+            {/* Visual Fill Bar */}
             <div
-              key={step}
-              className="flex items-center gap-4 rounded-2xl bg-white px-4 py-4 shadow-sm"
-            >
-              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-sky-100 text-sm font-semibold text-sky-800">
-                {index + 1}
-              </span>
-              <p className="text-sm font-medium text-slate-700">{step}</p>
-            </div>
-          ))}
-        </div>
+              className="h-full bg-sky-400 rounded-full transition-all duration-100"
+              style={{ width: `${progress}%` }}
+            />
+          </div>
 
-        <div className="mt-5 rounded-2xl border border-dashed border-slate-300 p-4 text-sm leading-6 text-slate-600">
-          Use this card as a starting point for more advanced workspace actions
-          like approvals, comments, or document uploads.
+          {/* 2. Control Buttons Toolbar */}
+          <div className="flex items-center justify-between text-white">
+            <div className="flex items-center gap-3">
+              {/* Play/Pause Button */}
+              <button
+                onClick={togglePlay}
+                className="p-2 rounded-full bg-white/10 hover:bg-white/20 transition backdrop-blur-md border border-white/10"
+              >
+                {isPlaying ? <Pause className="size-4" /> : <Play className="size-4 fill-white" />}
+              </button>
+
+              {/* Mute/Unmute Button */}
+              <button
+                onClick={toggleMute}
+                className="p-2 rounded-full bg-white/10 hover:bg-white/20 transition backdrop-blur-md border border-white/10"
+              >
+                {isMuted ? <VolumeX className="size-4" /> : <Volume2 className="size-4" />}
+              </button>
+            </div>
+
+            {/* Right Side: Fullscreen Button */}
+            <button
+              onClick={toggleFullscreen}
+              className="p-2 rounded-full bg-white/10 hover:bg-white/20 transition backdrop-blur-md border border-white/10"
+            >
+              <Maximize className="size-4" />
+            </button>
+          </div>
         </div>
       </div>
     </section>
