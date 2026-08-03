@@ -1,7 +1,8 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Image from "next/image";
-import { motion, type Variants } from "framer-motion";
+import { motion, type HTMLMotionProps, type Variants } from "framer-motion";
 
 import { contactActions } from "@/constants/contact";
 
@@ -36,15 +37,30 @@ const rightContentVariants: Variants = {
   visible: { opacity: 1, x: 0, transition: footerTransition },
 };
 
+type FooterTriggerProps = Pick<
+  HTMLMotionProps<"footer">,
+  "animate" | "whileHover" | "whileInView" | "viewport"
+>;
+
 export default function Footer() {
+  const isDesktop = useMediaQuery("(min-width: 1024px)");
+  const animationTriggerProps: FooterTriggerProps =
+    isDesktop === null
+      ? { animate: "hidden" }
+      : isDesktop
+        ? { animate: "hidden", whileHover: "visible" }
+        : {
+            whileInView: "visible",
+            viewport: { once: true, margin: "-50px" },
+          };
+
   return (
     <motion.footer
       id="let's-work"
       className="relative left-1/2 min-h-[760px] w-screen -translate-x-1/2 overflow-hidden bg-[#08090d] px-5 pt-28 text-white sm:px-10 lg:min-h-[980px] lg:px-20"
       initial="hidden"
-      animate="hidden"
-      whileHover="visible"
       variants={footerSectionVariants}
+      {...animationTriggerProps}
     >
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_82%,rgba(18,74,255,0.96),transparent_42%),linear-gradient(180deg,#08090d_0%,#0a0a0d_48%,#062fc7_100%)]" />
       <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.2)_0%,transparent_42%,rgba(0,0,0,0.08)_100%)]" />
@@ -94,6 +110,24 @@ export default function Footer() {
       </div>
     </motion.footer>
   );
+}
+
+function useMediaQuery(query: string) {
+  const [matches, setMatches] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    const mediaQueryList = window.matchMedia(query);
+    const updateMatches = () => setMatches(mediaQueryList.matches);
+
+    updateMatches();
+    mediaQueryList.addEventListener("change", updateMatches);
+
+    return () => {
+      mediaQueryList.removeEventListener("change", updateMatches);
+    };
+  }, [query]);
+
+  return matches;
 }
 
 function FooterBannerImage() {

@@ -11,8 +11,8 @@ export default function Home() {
       <div className="mx-auto w-full bg-[#111111]">
         <Header />
         <Banner />
-        {/* <Workspace />
-        <Project />
+        {/* <Workspace /> */}
+        {/* <Project />
         <CaseStudy />
         <Footer /> */}
       </div>
