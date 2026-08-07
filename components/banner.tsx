@@ -165,10 +165,10 @@ export default function Banner() {
 
       <div className="relative z-10 mx-auto flex h-full flex-col justify-end gap-10">
         <motion.div
-          className="absolute bottom-0 left-1/2 z-20 hidden h-[92vh] w-[50rem] -translate-x-1/2 lg:block"
+          className="absolute bottom-0 left-1/2 z-20 h-[92vh] w-[50rem] -translate-x-1/2"
           variants={centerImageVariants}
         >
-          <div className="relative h-full w-full">
+          <div className="relative size-full">
             <Image
               alt="Nam Nguyen portrait"
               src="/imgs/banner.png"
@@ -180,7 +180,7 @@ export default function Banner() {
           </div>
         </motion.div>
 
-        <div className="grid gap-10 lg:grid-cols-[1fr_0.9fr] lg:items-end pb-[10rem]">
+        <div className="grid gap-10 lg:grid-cols-[1fr_0.9fr] lg:items-end pb-[10rem] max-xmd:text-center">
           <motion.article className="max-w-2xl" variants={leftContentVariants}>
             <h1
               id="banner-heading"
@@ -230,7 +230,7 @@ export default function Banner() {
             </div>
 
             <motion.div
-              className="relative z-10 w-full overflow-hidden lg:max-w-[60rem] mask-[linear-gradient(90deg,transparent,black_12%,black_88%,transparent)]"
+              className="relative z-10 w-full overflow-hidden lg:max-w-[60rem] mask-[linear-gradient(90deg,transparent,black_12%,black_88%,transparent)] max-xmd:hidden"
               variants={bannerClientsVariants}
             >
               <motion.div
@@ -247,7 +247,7 @@ export default function Banner() {
                       {/* Lớp phủ Overlay Gradient làm giảm Brightness từ trên xuống dưới */}
                       <div
                         aria-hidden="true"
-                        className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-b from-transparent via-black/60 to-black/80"
+                        className="pointer-events-none absolute inset-0 z-10 bg-linear-to-b from-transparent via-black/60 to-black/80"
                       />
 
                       <Image

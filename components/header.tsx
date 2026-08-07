@@ -11,7 +11,7 @@ export default function Header() {
 
   return (
     <header className="fixed top-4 left-4 right-4 z-50 mx-auto max-w-[calc(100%-2rem)] overflow-hidden rounded-3xl bg-[rgba(15,23,42,0.65)] p-2 text-white shadow-[0_30px_80px_-35px_rgba(15,23,42,0.65)] backdrop-blur-xs lg:left-0 lg:right-0 lg:w-fit lg:rounded-full">
-      <div className="flex items-center justify-between gap-4 px-3 py-1 lg:hidden">
+      <div className="flex items-center justify-between gap-4 px-3 py-1 xmd:hidden">
         <Link
           href="#about-me"
           className="font-sf text-small leading-10"
@@ -33,20 +33,18 @@ export default function Header() {
 
       <nav
         id="primary-navigation"
-        className={`grid overflow-hidden transition-[grid-template-rows,opacity] duration-700 ease-out lg:block lg:overflow-visible lg:opacity-100 ${
-          isMenuOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
-        }`}
+        className={`${isMenuOpen ? "block" : "hidden"} xmd:block`}
       >
-        <ul className="grid min-h-0 gap-2 pt-2 text-white lg:flex lg:justify-between lg:pt-0">
+        <ul className="grid gap-2 pt-2 text-white xmd:flex xmd:justify-between xmd:pt-0">
           {navigationItems.map((item) => (
             <li
               key={item}
-              className="rounded-full text-smaller leading-10 duration-300 hover:bg-white hover:text-black lg:w-48 lg:text-small
+              className="text-smaller leading-10 duration-300 hover:bg-white hover:text-black xmd:w-48 xmd:rounded-full xmd:text-small
               last:bg-linear-to-r last:from-[#236BBD] last:to-[#959595] last:hover:brightness-150 last:hover:text-white"
             >
               <Link
                 href={`#${item.toLowerCase().replace(" ", "-")}`}
-                className="block size-full rounded-full px-4 text-center font-sf lg:px-0"
+                className="block size-full rounded-full px-4 text-center font-sf xmd:px-0"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {item}
