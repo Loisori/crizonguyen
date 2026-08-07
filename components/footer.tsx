@@ -7,33 +7,75 @@ import { motion, type HTMLMotionProps, type Variants } from "framer-motion";
 import { contactActions } from "@/constants/contact";
 
 const footerTransition = {
-  duration: 1,
+  duration: 0.6,
   ease: [0.25, 1, 0.5, 1] as const,
   type: "tween" as const,
 };
 
+const stageTwoDelay = 0.6;
+
+const stageTwoTransition = {
+  ...footerTransition,
+  delay: stageTwoDelay,
+};
+
+const fullAnimationTransition = {
+  duration: stageTwoDelay + footerTransition.duration,
+  ease: footerTransition.ease,
+  type: footerTransition.type,
+};
+
 const footerSectionVariants: Variants = {
+  hidden: {
+    backgroundColor: "#111111",
+  },
+  visible: {
+    backgroundColor: ["#ffffff", "#ffffff", "#111111"],
+    transition: {
+      ...fullAnimationTransition,
+      times: [0, 0.5, 1],
+    },
+  },
+};
+
+const stageTwoContainerVariants: Variants = {
   hidden: {},
-  visible: {},
+  visible: {
+    transition: {
+      delayChildren: stageTwoDelay,
+      staggerChildren: 0.08,
+    },
+  },
+};
+
+const footerBackgroundVariants: Variants = {
+  hidden: { opacity: 1 },
+  visible: {
+    opacity: [0, 0, 1],
+    transition: {
+      ...fullAnimationTransition,
+      times: [0, 0.5, 1],
+    },
+  },
 };
 
 const backgroundTextVariants: Variants = {
-  hidden: { opacity: 0, y: -100 },
+  hidden: { opacity: 0, y: 100 },
   visible: { opacity: 1, y: 0, transition: footerTransition },
 };
 
 const footerImageVariants: Variants = {
-  hidden: { opacity: 0, y: 150 },
-  visible: { opacity: 1, y: 0, transition: footerTransition },
+  hidden: { opacity: 0, scale: 0.8 },
+  visible: { opacity: 1, scale: 1, transition: footerTransition },
 };
 
 const leftContentVariants: Variants = {
-  hidden: { opacity: 0, x: -100 },
-  visible: { opacity: 1, x: 0, transition: footerTransition },
+  hidden: { opacity: 0, y: 100 },
+  visible: { opacity: 1, y: 0, transition: stageTwoTransition },
 };
 
 const rightContentVariants: Variants = {
-  hidden: { opacity: 0, x: 100 },
+  hidden: { opacity: 0, x: 0 },
   visible: { opacity: 1, x: 0, transition: footerTransition },
 };
 
@@ -57,31 +99,41 @@ export default function Footer() {
   return (
     <motion.footer
       id="let's-work"
-      className="relative left-1/2 min-h-[760px] w-screen -translate-x-1/2 overflow-hidden bg-[#08090d] px-5 pt-28 text-white sm:px-10 lg:min-h-[980px] lg:px-20"
+      className="relative left-1/2 min-h-[760px] w-screen -translate-x-1/2 overflow-hidden bg-[#111111] px-5 pt-28 text-white sm:px-10 lg:min-h-[980px] lg:px-20"
       initial="hidden"
       variants={footerSectionVariants}
       {...animationTriggerProps}
     >
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_82%,rgba(18,74,255,0.96),transparent_42%),linear-gradient(180deg,#08090d_0%,#0a0a0d_48%,#062fc7_100%)]" />
-      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.2)_0%,transparent_42%,rgba(0,0,0,0.08)_100%)]" />
+      <motion.div className="contents" variants={stageTwoContainerVariants}>
+        <motion.div
+          className="absolute inset-0 bg-[radial-gradient(circle_at_50%_82%,rgba(18,74,255,0.96),transparent_42%),linear-gradient(180deg,#111111_0%,#0a0a0d_48%,#062fc7_100%)]"
+          variants={footerBackgroundVariants}
+        />
+        <motion.div
+          className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.2)_0%,transparent_42%,rgba(0,0,0,0.08)_100%)]"
+          variants={footerBackgroundVariants}
+        />
 
-      <motion.div
-        className="font-heathergreen pointer-events-none absolute inset-x-0 top-[9%] select-none text-center text-[clamp(7rem,18vw,24rem)] font-black leading-none text-white/[0.12] drop-shadow-[0_0_16px_rgba(255,255,255,0.2)]"
-        variants={backgroundTextVariants}
-      >
-        Let&apos;s Work Together
+        <motion.div
+          className="font-heathergreen pointer-events-none absolute inset-x-0 top-[9%] select-none text-center text-[clamp(7rem,18vw,24rem)] font-black leading-none text-white/[0.12] opacity-0 drop-shadow-[0_0_16px_rgba(255,255,255,0.2)]"
+          variants={backgroundTextVariants}
+        >
+          Let&apos;s Work Together
+        </motion.div>
+
+        <motion.div className="opacity-0" variants={rightContentVariants}>
+          <div className="font-heathergreen pointer-events-none absolute left-[22%] top-[52%] hidden select-none text-[clamp(4rem,7vw,9rem)] font-black leading-none text-white/[0.08] lg:block">
+            Nam Nguyen
+          </div>
+          <div className="font-heathergreen pointer-events-none absolute right-[23%] top-[53%] hidden select-none text-[clamp(4rem,7vw,9rem)] font-black leading-none text-white/[0.08] lg:block">
+            Video Editor
+          </div>
+        </motion.div>
+
+        <motion.div className="opacity-0" variants={footerBackgroundVariants}>
+          <DecorativeBurst />
+        </motion.div>
       </motion.div>
-
-      <motion.div variants={rightContentVariants}>
-        <div className="font-heathergreen pointer-events-none absolute left-[22%] top-[52%] hidden select-none text-[clamp(4rem,7vw,9rem)] font-black leading-none text-white/[0.08] lg:block">
-          Nam Nguyen
-        </div>
-        <div className="font-heathergreen pointer-events-none absolute right-[23%] top-[53%] hidden select-none text-[clamp(4rem,7vw,9rem)] font-black leading-none text-white/[0.08] lg:block">
-          Video Editor
-        </div>
-      </motion.div>
-
-      <DecorativeBurst />
 
       <div className="relative z-10 mx-auto flex min-h-[630px] max-w-[108rem] flex-col items-center justify-end lg:min-h-[820px]">
         <motion.div
@@ -92,7 +144,7 @@ export default function Footer() {
         </motion.div>
 
         <motion.div
-          className="relative z-20 mb-[9.5rem] grid gap-rem sm:grid-cols-2"
+          className="relative z-20 mb-[9.5rem] grid gap-rem opacity-0 sm:grid-cols-2"
           variants={leftContentVariants}
         >
           {contactActions.map((action) => (
