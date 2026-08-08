@@ -9,12 +9,12 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-[linear-gradient(180deg,#f8fafc_0%,#eef2ff_52%,#ffffff_100%)] font-sans">
       <div className="mx-auto w-full bg-[#111111]">
-        {/* <Header />
+        <Header />
         <Banner />
         <Workspace /> 
-        <Project />
-        <CaseStudy /> */}
-        <Footer />
+        {/* <Project />
+        <CaseStudy />
+        <Footer /> */}
       </div>
     </main>
   );

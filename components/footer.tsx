@@ -79,6 +79,11 @@ const rightContentVariants: Variants = {
   visible: { opacity: 1, x: 0, transition: footerTransition },
 };
 
+const neckTextVariants: Variants = {
+  hidden: { opacity: 0, scale: 0.9, y: 36 },
+  visible: { opacity: 1, scale: 1, y: 0, transition: stageTwoTransition },
+};
+
 type FooterTriggerProps = Pick<
   HTMLMotionProps<"footer">,
   "animate" | "whileHover" | "whileInView" | "viewport"
@@ -137,14 +142,28 @@ export default function Footer() {
 
       <div className="relative z-10 mx-auto flex min-h-[630px] max-w-[108rem] flex-col items-center justify-end lg:min-h-[820px]">
         <motion.div
-          className="absolute left-1/2 size-[100rem] -translate-x-1/2 "
+          className="pointer-events-none absolute left-1/2 top-[31%] z-0 size-[32rem] -translate-x-1/2 select-none opacity-0 [mask-image:linear-gradient(180deg,#000_0%,#000_48%,transparent_49%)] sm:size-[42rem] lg:top-[34%] lg:size-[54rem]"
+          variants={neckTextVariants}
+        >
+          <RotatingNeckText pathId="footer-neck-text-back" />
+        </motion.div>
+
+        <motion.div
+          className="absolute left-1/2 z-10 size-[100rem] -translate-x-1/2 "
           variants={footerImageVariants}
         >
           <FooterBannerImage />
         </motion.div>
 
         <motion.div
-          className="relative z-20 mb-[9.5rem] grid gap-rem opacity-0 sm:grid-cols-2"
+          className="pointer-events-none absolute left-1/2 top-[31%] z-20 size-[32rem] -translate-x-1/2 select-none opacity-0 [mask-image:linear-gradient(180deg,transparent_0%,transparent_48%,#000_49%,#000_100%)] sm:size-[42rem] lg:top-[34%] lg:size-[54rem]"
+          variants={neckTextVariants}
+        >
+          <RotatingNeckText pathId="footer-neck-text-front" />
+        </motion.div>
+
+        <motion.div
+          className="relative z-30 mb-[9.5rem] grid gap-rem opacity-0 sm:grid-cols-2"
           variants={leftContentVariants}
         >
           {contactActions.map((action) => (
@@ -194,6 +213,46 @@ function FooterBannerImage() {
         className="object-contain object-center drop-shadow-[0_30px_90px_rgba(0,0,0,0.65)]"
       />
     </div>
+  );
+}
+
+type RotatingNeckTextProps = {
+  pathId: string;
+};
+
+function RotatingNeckText({ pathId }: RotatingNeckTextProps) {
+  const text = "Just Do It! * Just Do It! * ";
+
+  return (
+    <motion.svg
+      aria-hidden="true"
+      className="h-full w-full overflow-visible"
+      viewBox="0 0 400 400"
+      animate={{ rotate: 360 }}
+      transition={{
+        duration: 14,
+        ease: "linear",
+        repeat: Infinity,
+      }}
+    >
+      <defs>
+        <path
+          id={pathId}
+          d="M 200 200 m -142 0 a 142 142 0 1 1 284 0 a 142 142 0 1 1 -284 0"
+        />
+      </defs>
+      <text
+        className="font-heathergreen fill-white text-[4.25rem] font-black drop-shadow-[0_0_7px_rgba(255,255,255,0.95)]"
+        letterSpacing="2"
+      >
+        <textPath href={`#${pathId}`} startOffset="0%">
+          {text}
+        </textPath>
+        <textPath href={`#${pathId}`} startOffset="50%">
+          {text}
+        </textPath>
+      </text>
+    </motion.svg>
   );
 }
 

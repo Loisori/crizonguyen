@@ -49,17 +49,6 @@ const centerImageVariants: Variants = {
   visible: { opacity: 1, y: 0, scale: 1, transition: bannerTransition },
 };
 
-const bannerClientsVariants: Variants = {
-  hidden: { opacity: 0, y: 300, x: 100, scale: 0.5 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    x: 0,
-    scale: 1,
-    transition: bannerTransition,
-  },
-};
-
 const leftContentVariants: Variants = {
   hidden: { opacity: 0, x: -100 },
   visible: { opacity: 1, x: 0, transition: bannerTransition },
@@ -71,7 +60,7 @@ const rightContentVariants: Variants = {
 };
 
 const circle1Variants: Variants = {
-  hidden: { left: "0%", top: "0%", opacity: 0, rotate: -45 },
+  hidden: { left: "0%", top: "20%", opacity: 0, rotate: 45 },
   visible: {
     left: "7%",
     top: "9%",
@@ -82,7 +71,7 @@ const circle1Variants: Variants = {
 };
 
 const circle2Variants: Variants = {
-  hidden: { right: "0%", top: "0%", opacity: 0, rotate: 45 },
+  hidden: { right: "0%", top: "27%", opacity: 0, rotate: 45 },
   visible: {
     right: "6%",
     top: "17%",
@@ -132,7 +121,7 @@ export default function Banner() {
   return (
     <motion.section
       aria-labelledby="banner-heading"
-      className="wrapper wrapper--lg group relative h-screen w-screen overflow-hidden border-b border-white/20 bg-[#111111] pb-0! text-white"
+      className="wrapper wrapper--lg group relative max-lg:max-h-[84.4rem] h-screen w-screen overflow-hidden border-b border-white/20 bg-[#111111] pb-0! text-white"
       initial="hidden"
       variants={bannerSectionVariants}
       {...animationTriggerProps}
@@ -151,7 +140,7 @@ export default function Banner() {
       <motion.p
         aria-hidden="true"
         // bg-gradient-to-b from-[#FFFFFF] to-transparent bg-clip-text text-transparent
-        className="w-full font-heathergreen text-[15rem] md:text-[25rem] lg:text-[50rem] text-center pointer-events-none absolute top-[12%] whitespace-nowrap select-none leading-none text-white/11 drop-shadow-[0_0_18px_rgba(255,255,255,0.22)]"
+        className="max-lg:w-full font-heathergreen text-[16rem] sm:text-[32rem] xmd:text-[50rem] text-center pointer-events-none absolute top-[12%] whitespace-nowrap select-none leading-none text-white/11 drop-shadow-[0_0_18px_rgba(255,255,255,0.22)]"
         variants={backgroundTextVariants}
       >
         Video Editor
@@ -165,7 +154,7 @@ export default function Banner() {
 
       <div className="relative z-10 mx-auto flex h-full flex-col justify-end gap-10">
         <motion.div
-          className="absolute bottom-0 left-1/2 z-20 h-[92vh] w-[50rem] -translate-x-1/2"
+          className="absolute bottom-0 left-1/2 z-20 h-[92vh] w-200 -translate-x-1/2"
           variants={centerImageVariants}
         >
           <div className="relative size-full">
@@ -180,20 +169,20 @@ export default function Banner() {
           </div>
         </motion.div>
 
-        <div className="grid gap-10 lg:grid-cols-[1fr_0.9fr] lg:items-end pb-[10rem] max-xmd:text-center">
-          <motion.article className="max-w-2xl" variants={leftContentVariants}>
+        <div className="grid gap-3 xmd:gap-10 xmd:grid-cols-[1fr_0.9fr] xmd:items-end pb-[5rem] xmd:pb-[10rem] max-xmd:text-center max-xmd:justify-center max-xmd:z-50">
+          <motion.article className="w-full xmd:max-w-2xl" variants={leftContentVariants}>
             <h1
               id="banner-heading"
               className="font-heathergreen text-[4rem] md:text-[8rem] lg:text-[12rem] tracking-[1%] whitespace-nowrap text-white drop-shadow-[0_3px_18px_rgba(255,255,255,0.69)]"
             >
-              Hi, I&apos;m Nam Nguyen
+              Hi, I&apos;m Crizo Nguyen
             </h1>
             <p className="font-sf mt-1 lg:max-w-2xl text-small leading-[150%] text-white">
               I help content creators and agencies craft high-engaging videos
               that reflect their values and connect deeply with their audience
             </p>
 
-            <div className="mt-6 flex gap-2" aria-label="Software tools">
+            <div className="mt-3 xmd:mt-6 flex gap-2 max-xmd:justify-center" aria-label="Software tools">
               {bannerTools.map((tool) => (
                 <div
                   key={tool.label}
@@ -216,10 +205,10 @@ export default function Banner() {
             className="flex flex-col gap-12 lg:items-end"
             variants={rightContentVariants}
           >
-            <div className="relative z-30 grid w-full grid-cols-3 gap-5 lg:max-w-160">
+            <div className="relative z-30 grid w-full grid-cols-3 gap-5 xmd:max-w-160">
               {bannerStats.map((stat) => (
                 <article key={stat.label} className="text-center lg:text-left">
-                  <p className="font-heathergreen text-h1 lg:text-[8rem] tracking-[1%] font-black leading-none text-white drop-shadow-[0_0_14px_rgba(255,255,255,0.5)]">
+                  <p className="font-heathergreen text-h1 xmd:text-[8rem] tracking-[1%] font-black leading-none text-white drop-shadow-[0_0_14px_rgba(255,255,255,0.5)]">
                     {stat.value}
                   </p>
                   <p className="font-sf mt-4 text-white/85 text-small">
@@ -229,9 +218,8 @@ export default function Banner() {
               ))}
             </div>
 
-            <motion.div
-              className="relative z-10 w-full overflow-hidden lg:max-w-[60rem] mask-[linear-gradient(90deg,transparent,black_12%,black_88%,transparent)] max-xmd:hidden"
-              variants={bannerClientsVariants}
+            <div
+              className="relative z-10 w-full overflow-hidden xmd:max-w-[60rem] mask-[linear-gradient(90deg,transparent,black_12%,black_88%,transparent)] max-xmd:hidden"
             >
               <motion.div
                 className="flex w-max gap-3 lg:gap-5"
@@ -254,14 +242,14 @@ export default function Banner() {
                         alt={brand.alt}
                         src={brand.src}
                         fill
-                        sizes="(max-width: 640px) 48px, (max-width: 768px) 64px, (max-width: 1024px) 80px, 96px"
+                        sizes="(max-width: 640px) 48px, (max-width: 768px) 64px, (max-width: 1280px) 80px, 96px"
                         className="object-contain"
                       />
                     </div>
                   </div>
                 ))}
               </motion.div>
-            </motion.div>
+            </div>
           </motion.aside>
         </div>
       </div>
@@ -296,7 +284,7 @@ function DecorativeShapes() {
           src="/imgs/circle1.png"
           width={128}
           height={128}
-          className="size-32"
+          className="size-16 sm:size-24 xmd:size-32"
         />
       </motion.div>
       <motion.div className="absolute" variants={circle2Variants}>
@@ -305,7 +293,7 @@ function DecorativeShapes() {
           src="/imgs/circle2.png"
           width={140}
           height={140}
-          className="size-56"
+          className="size-30 sm:size-40 xmd:size-56"
         />
       </motion.div>
       <motion.div className="absolute" variants={star1Variants}>
@@ -314,11 +302,11 @@ function DecorativeShapes() {
           src="/imgs/star1.png"
           width={128}
           height={128}
-          className="size-32 animate-spin [animation-duration:12s]"
+          className="size-16 sm:size-24 xmd:size-32 animate-spin [animation-duration:12s]"
         />
       </motion.div>
       <motion.div className="absolute" variants={star2Variants}>
-        <div className="size-20 bg-white/15 [clip-path:polygon(50%_0,61%_36%,100%_36%,68%_58%,80%_96%,50%_73%,20%_96%,32%_58%,0_36%,39%_36%)]" />
+        <div className="size-14 sm:size-16 xmd:size-20 bg-white/15 [clip-path:polygon(50%_0,61%_36%,100%_36%,68%_58%,80%_96%,50%_73%,20%_96%,32%_58%,0_36%,39%_36%)]" />
       </motion.div>
     </div>
   );
