@@ -134,11 +134,13 @@ export default function Banner() {
       />
       <div className="wrapper wrapper--lg group relative max-h-[84.4rem] h-screen w-screen text-white">
         <DecorativeShapes />
-
+        {/* text-transparent */}
+        {/* [-webkit-text-stroke:1px_rgba(255,255,255,0.4)] */}
         <motion.p
           aria-hidden="true"
-          // bg-gradient-to-b from-[#FFFFFF] to-transparent bg-clip-text text-transparent
-          className="max-lg:w-full font-heathergreen text-[16rem] sm:text-[32rem] xmd:text-[50rem] text-center pointer-events-none absolute top-[12%] whitespace-nowrap select-none leading-none text-white/11 drop-shadow-[0_0_18px_rgba(255,255,255,0.22)]"
+          className="pointer-events-none absolute top-[12%] max-lg:w-full select-none text-center 
+          font-heathergreen leading-none whitespace-nowrap bg-linear-to-b from-white/11 to-transparent bg-clip-text text-transparent
+          drop-shadow-[0_0_18px_rgba(255,255,255,0.22)] text-[16rem] sm:text-[32rem] xmd:text-[50rem]"
           variants={backgroundTextVariants}
         >
           Video Editor

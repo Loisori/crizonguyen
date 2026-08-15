@@ -49,11 +49,11 @@ const stageTwoContainerVariants: Variants = {
 };
 
 const star1Variants: Variants = {
-  hidden: { left: "0%", top: "47%", opacity: 0 },
+  hidden: { right: "20%", top: "5%", opacity: 0 },
   visible: {
-    left: "3%",
-    top: "47%",
-    opacity: 1,
+    right: "26%",
+    top: "8%",
+    opacity: 0.35,
     transition: stageTwoTransition,
   },
 };
@@ -114,7 +114,7 @@ export default function Footer() {
   return (
     <motion.footer
       id="let's-work"
-      className="relative left-1/2 min-h-[760px] w-screen -translate-x-1/2 overflow-hidden bg-[#111111] px-5 pt-28 text-white sm:px-10 lg:min-h-[980px] lg:px-20"
+      className="relative left-1/2 w-screen -translate-x-1/2 overflow-hidden bg-[#111111] px-5 pt-28 text-white sm:px-10 lg:px-20"
       initial="hidden"
       variants={footerSectionVariants}
       {...animationTriggerProps}
@@ -130,56 +130,62 @@ export default function Footer() {
         />
 
         <motion.p
-          className="text-[16rem] sm:text-[32rem] xmd:text-[40] font-heathergreen pointer-events-none absolute inset-x-0 top-[9%] select-none text-center font-black leading-none text-white/11 opacity-0 drop-shadow-[0_0_16px_rgba(255,255,255,0.2)]"
+          className="tracking-[4%] text-[16rem] sm:text-[32rem] xmd:text-[40] 
+          pointer-events-none absolute inset-x-0 top-[9%] select-none 
+          text-center font-black opacity-0 drop-shadow-[0_0_16px_rgba(255,255,255,0.2)]
+          font-heathergreen leading-none whitespace-nowrap bg-linear-to-b from-white/11 to-transparent bg-clip-text text-transparent
+          "
           variants={backgroundTextVariants}
         >
           Let&apos;s Work Together
         </motion.p>
 
-        <motion.div className="opacity-0" variants={rightContentVariants}>
-          <div className="font-heathergreen pointer-events-none absolute left-[22%] top-[52%] hidden select-none text-[clamp(4rem,7vw,9rem)] font-black leading-none text-white/[0.08] lg:block">
-            Nam Nguyen
-          </div>
-          <div className="font-heathergreen pointer-events-none absolute right-[23%] top-[53%] hidden select-none text-[clamp(4rem,7vw,9rem)] font-black leading-none text-white/[0.08] lg:block">
-            Video Editor
-          </div>
+        <motion.div
+          className="opacity-0 font-heathergreen tracking-[4%] text-white/8 
+          pointer-events-none select-none text-[clamp(5rem,8vw,10rem)] font-black leading-none hidden lg:block"
+          variants={rightContentVariants}
+        >
+          <p className="absolute left-[22%] top-[52%]">Crizo Nguyen</p>
+          <p className="absolute right-[23%] top-[53%]">Video Editor</p>
         </motion.div>
-
-        <motion.div className="opacity-0" variants={star1Variants}>
+        <motion.div
+          className="absolute pointer-events-none select-none z-0"
+          variants={star1Variants}
+        >
           <Image
             alt="Decorative shape"
             src="/imgs/star1.png"
             width={128}
             height={128}
-            className="size-16 sm:size-24 xmd:size-32 animate-spin [animation-duration:12s]"
+            className="size-16 sm:size-20 lg:size-24 animate-spin [animation-duration:16s] opacity-35"
           />
         </motion.div>
       </motion.div>
 
+      <motion.div
+        className="absolute bottom-0 left-1/2 z-10 h-[92vh] w-[90rem] -translate-x-1/2 scale-[1.2] origin-bottom"
+        variants={footerImageVariants}
+      >
+        <FooterBannerImage />
+      </motion.div>
+
       <div className="relative z-10 mx-auto flex min-h-[630px] max-w-[108rem] flex-col items-center justify-end lg:min-h-[820px]">
         <motion.div
-          className="pointer-events-none absolute left-1/2 top-[31%] z-0 size-[32rem] -translate-x-1/2 select-none opacity-0 [mask-image:linear-gradient(180deg,#000_0%,#000_48%,transparent_49%)] sm:size-[42rem] lg:top-[34%] lg:size-[54rem]"
+          className="pointer-events-none absolute left-1/2 top-[40px] z-0 size-[32rem] -translate-x-1/2 select-none opacity-0 [mask-image:linear-gradient(180deg,#000_0%,#000_48%,transparent_49%)] sm:size-[42rem] lg:top-[120px] lg:size-[54rem]"
           variants={neckTextVariants}
         >
           {/* <RotatingNeckText pathId="footer-neck-text-back" /> */}
         </motion.div>
 
         <motion.div
-          className="absolute left-1/2 z-10 size-[100rem] -translate-x-1/2 "
-          variants={footerImageVariants}
-        >
-          <FooterBannerImage />
-        </motion.div>
-
-        <motion.div
-          className="pointer-events-none absolute left-1/2 top-[31%] z-20 size-[32rem] -translate-x-1/2 select-none opacity-0 [mask-image:linear-gradient(180deg,transparent_0%,transparent_48%,#000_49%,#000_100%)] sm:size-[42rem] lg:top-[34%] lg:size-[54rem]"
+          className="pointer-events-none absolute left-1/2 top-[40px] z-20 size-[32rem] -translate-x-1/2 select-none opacity-0 [mask-image:linear-gradient(180deg,transparent_0%,transparent_48%,#000_49%,#000_100%)] sm:size-[42rem] lg:top-[120px] lg:size-[54rem]"
           variants={neckTextVariants}
         >
           {/* <RotatingNeckText pathId="footer-neck-text-front" /> */}
         </motion.div>
 
         <motion.div
-          className="relative z-30 mb-[9.5rem] grid gap-rem opacity-0 sm:grid-cols-2"
+          className="relative z-30 mb-16 flex flex-col sm:flex-row gap-4 items-center justify-center opacity-0 w-full px-4"
           variants={leftContentVariants}
         >
           {contactActions.map((action) => (
@@ -219,16 +225,56 @@ function useMediaQuery(query: string) {
 
 function FooterBannerImage() {
   return (
-    <div className="relative h-full w-full">
+    <div className="relative size-full">
       <Image
         alt="Nam Nguyen footer banner portrait"
         src="/imgs/footer_banner.png"
         fill
         priority
         sizes="(min-width: 1280px) 50rem, (min-width: 768px) 80vw, 104vw"
-        className="object-contain object-center drop-shadow-[0_30px_90px_rgba(0,0,0,0.65)]"
+        className="object-contain object-bottom drop-shadow-[0_30px_90px_rgba(0,0,0,0.65)]"
       />
     </div>
+  );
+}
+
+type RotatingNeckTextProps = {
+  pathId: string;
+};
+
+function RotatingNeckText({ pathId }: RotatingNeckTextProps) {
+  const text = "Just Do It! * Just Do It! * ";
+
+  return (
+    <motion.svg
+      aria-hidden="true"
+      className="h-full w-full overflow-visible"
+      viewBox="0 0 400 400"
+      animate={{ rotate: 360 }}
+      transition={{
+        duration: 14,
+        ease: "linear",
+        repeat: Infinity,
+      }}
+    >
+      <defs>
+        <path
+          id={pathId}
+          d="M 200 200 m -142 0 a 142 142 0 1 1 284 0 a 142 142 0 1 1 -284 0"
+        />
+      </defs>
+      <text
+        className="font-sf fill-white text-[3.8rem] font-black drop-shadow-[0_0_8px_rgba(255,255,255,0.85)]"
+        letterSpacing="1.5"
+      >
+        <textPath href={`#${pathId}`} startOffset="0%">
+          {text}
+        </textPath>
+        <textPath href={`#${pathId}`} startOffset="50%">
+          {text}
+        </textPath>
+      </text>
+    </motion.svg>
   );
 }
 
@@ -236,7 +282,7 @@ function InstagramIcon() {
   return (
     <svg
       aria-hidden="true"
-      className="h-8 w-8 shrink-0"
+      className="h-6 w-6 shrink-0"
       fill="none"
       viewBox="0 0 24 24"
       stroke="currentColor"
@@ -253,7 +299,7 @@ function EmailIcon() {
   return (
     <svg
       aria-hidden="true"
-      className="h-8 w-8 shrink-0"
+      className="h-6 w-6 shrink-0"
       fill="none"
       viewBox="0 0 24 24"
       stroke="currentColor"
