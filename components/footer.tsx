@@ -48,6 +48,16 @@ const stageTwoContainerVariants: Variants = {
   },
 };
 
+const star1Variants: Variants = {
+  hidden: { left: "0%", top: "47%", opacity: 0 },
+  visible: {
+    left: "3%",
+    top: "47%",
+    opacity: 1,
+    transition: stageTwoTransition,
+  },
+};
+
 const footerBackgroundVariants: Variants = {
   hidden: { opacity: 1 },
   visible: {
@@ -119,12 +129,12 @@ export default function Footer() {
           variants={footerBackgroundVariants}
         />
 
-        <motion.div
-          className="font-heathergreen pointer-events-none absolute inset-x-0 top-[9%] select-none text-center text-[clamp(7rem,18vw,24rem)] font-black leading-none text-white/[0.12] opacity-0 drop-shadow-[0_0_16px_rgba(255,255,255,0.2)]"
+        <motion.p
+          className="text-[16rem] sm:text-[32rem] xmd:text-[40] font-heathergreen pointer-events-none absolute inset-x-0 top-[9%] select-none text-center font-black leading-none text-white/11 opacity-0 drop-shadow-[0_0_16px_rgba(255,255,255,0.2)]"
           variants={backgroundTextVariants}
         >
           Let&apos;s Work Together
-        </motion.div>
+        </motion.p>
 
         <motion.div className="opacity-0" variants={rightContentVariants}>
           <div className="font-heathergreen pointer-events-none absolute left-[22%] top-[52%] hidden select-none text-[clamp(4rem,7vw,9rem)] font-black leading-none text-white/[0.08] lg:block">
@@ -135,8 +145,14 @@ export default function Footer() {
           </div>
         </motion.div>
 
-        <motion.div className="opacity-0" variants={footerBackgroundVariants}>
-          <DecorativeBurst />
+        <motion.div className="opacity-0" variants={star1Variants}>
+          <Image
+            alt="Decorative shape"
+            src="/imgs/star1.png"
+            width={128}
+            height={128}
+            className="size-16 sm:size-24 xmd:size-32 animate-spin [animation-duration:12s]"
+          />
         </motion.div>
       </motion.div>
 
@@ -145,7 +161,7 @@ export default function Footer() {
           className="pointer-events-none absolute left-1/2 top-[31%] z-0 size-[32rem] -translate-x-1/2 select-none opacity-0 [mask-image:linear-gradient(180deg,#000_0%,#000_48%,transparent_49%)] sm:size-[42rem] lg:top-[34%] lg:size-[54rem]"
           variants={neckTextVariants}
         >
-          <RotatingNeckText pathId="footer-neck-text-back" />
+          {/* <RotatingNeckText pathId="footer-neck-text-back" /> */}
         </motion.div>
 
         <motion.div
@@ -159,7 +175,7 @@ export default function Footer() {
           className="pointer-events-none absolute left-1/2 top-[31%] z-20 size-[32rem] -translate-x-1/2 select-none opacity-0 [mask-image:linear-gradient(180deg,transparent_0%,transparent_48%,#000_49%,#000_100%)] sm:size-[42rem] lg:top-[34%] lg:size-[54rem]"
           variants={neckTextVariants}
         >
-          <RotatingNeckText pathId="footer-neck-text-front" />
+          {/* <RotatingNeckText pathId="footer-neck-text-front" /> */}
         </motion.div>
 
         <motion.div
@@ -212,54 +228,6 @@ function FooterBannerImage() {
         sizes="(min-width: 1280px) 50rem, (min-width: 768px) 80vw, 104vw"
         className="object-contain object-center drop-shadow-[0_30px_90px_rgba(0,0,0,0.65)]"
       />
-    </div>
-  );
-}
-
-type RotatingNeckTextProps = {
-  pathId: string;
-};
-
-function RotatingNeckText({ pathId }: RotatingNeckTextProps) {
-  const text = "Just Do It! * Just Do It! * ";
-
-  return (
-    <motion.svg
-      aria-hidden="true"
-      className="h-full w-full overflow-visible"
-      viewBox="0 0 400 400"
-      animate={{ rotate: 360 }}
-      transition={{
-        duration: 14,
-        ease: "linear",
-        repeat: Infinity,
-      }}
-    >
-      <defs>
-        <path
-          id={pathId}
-          d="M 200 200 m -142 0 a 142 142 0 1 1 284 0 a 142 142 0 1 1 -284 0"
-        />
-      </defs>
-      <text
-        className="font-heathergreen fill-white text-[4.25rem] font-black drop-shadow-[0_0_7px_rgba(255,255,255,0.95)]"
-        letterSpacing="2"
-      >
-        <textPath href={`#${pathId}`} startOffset="0%">
-          {text}
-        </textPath>
-        <textPath href={`#${pathId}`} startOffset="50%">
-          {text}
-        </textPath>
-      </text>
-    </motion.svg>
-  );
-}
-
-function DecorativeBurst() {
-  return (
-    <div aria-hidden="true" className="pointer-events-none absolute inset-0">
-      <div className="absolute right-[28%] top-[8%] size-24 rotate-12 bg-white/25 [clip-path:polygon(45%_0,57%_0,57%_35%,88%_18%,96%_28%,67%_50%,96%_72%,88%_82%,57%_65%,57%_100%,45%_100%,45%_65%,12%_82%,4%_72%,33%_50%,4%_28%,12%_18%,45%_35%)]" />
     </div>
   );
 }

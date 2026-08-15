@@ -14,7 +14,7 @@ export default function Home() {
         <Workspace /> 
         <Project />
         <CaseStudy />
-        {/* <Footer /> */}
+        <Footer />
       </div>
     </main>
   );
