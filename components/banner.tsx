@@ -159,7 +159,7 @@ export default function Banner() {
           >
             <div className="relative size-full">
               <Image
-                alt="Nam Nguyen portrait"
+                alt="Crizo Nguyen portrait"
                 src="/imgs/banner.png"
                 fill
                 priority

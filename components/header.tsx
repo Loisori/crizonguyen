@@ -17,7 +17,7 @@ export default function Header() {
           className="font-sf text-small leading-10"
           onClick={() => setIsMenuOpen(false)}
         >
-          Nam Nguyen
+          Crizo Nguyen
         </Link>
         <button
           type="button"

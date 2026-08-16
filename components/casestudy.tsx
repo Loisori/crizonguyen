@@ -11,10 +11,12 @@ export default function CaseStudy() {
   return (
     <section
       id="case-study"
-      className="relative left-1/2 min-h-[820px] w-screen -translate-x-1/2 overflow-hidden bg-[#0a0a0a] px-4 pb-20 pt-32 text-white sm:px-8 lg:min-h-[980px] lg:px-16"
+      className="
+      wrapper wrapper--lg
+      relative min-h-[820px] w-screen  overflow-hidden pb-20 pt-32 text-white sm:px-8 lg:min-h-[980px]"
     >
-      <div className="absolute inset-x-0 top-0 h-80 bg-[radial-gradient(circle_at_50%_0%,rgba(255,255,255,0.12),transparent_34%)]" />
-      <div className="absolute inset-x-0 bottom-0 h-56 bg-[linear-gradient(180deg,transparent,rgba(0,0,0,0.95))]" />
+      {/* <div className="absolute inset-x-0 top-0 h-80 bg-[radial-gradient(circle_at_50%_0%,rgba(255,255,255,0.12),transparent_34%)]" /> */}
+      {/* <div className="absolute inset-x-0 bottom-0 h-56 bg-[linear-gradient(180deg,transparent,rgba(0,0,0,0.95))]" /> */}
 
       <div className="relative z-10 mx-auto max-w-[120rem]">
         <div className="text-center">
@@ -115,7 +117,7 @@ function CasePanel({
           >
             {/* Thumbnail */}
             <div className="relative w-full shrink-0">
-              <VideoThumb img={video.img} duration={video.duration} />
+              <VideoThumb img={video.img} />
             </div>
           </article>
         ))}
@@ -124,7 +126,7 @@ function CasePanel({
   );
 }
 
-function VideoThumb({ img, duration }: { img: string; duration: string }) {
+function VideoThumb({ img }: { img: string;}) {
   return (
     <div className="relative aspect-[4/3] overflow-hidden rounded-lg bg-zinc-900 shadow-[0_18px_45px_rgba(0,0,0,0.28)] border border-white/5 w-full">
       <Image
@@ -134,9 +136,6 @@ function VideoThumb({ img, duration }: { img: string; duration: string }) {
         sizes="(max-width: 640px) 100vw, 176px"
         className="object-cover transition-transform duration-500 group-hover:scale-105"
       />
-      <span className="absolute bottom-2 right-2 rounded bg-black/85 px-1.5 py-0.5 text-[0.68rem] font-bold text-white">
-        {duration}
-      </span>
     </div>
   );
 }
