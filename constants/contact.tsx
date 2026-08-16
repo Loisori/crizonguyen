@@ -1,12 +1,12 @@
 export const contactActions = [
   {
     label: "Chat on Instagram",
-    href: "https://www.instagram.com/",
+    href: "https://www.instagram.com/crizo.thedit?utm_source=qr",
     icon: "instagram",
   },
   {
     label: "Send an Email",
-    href: "mailto:hello@example.com",
+    href: "tnamnguyen04@gmail.com",
     icon: "email",
   },
 ];
