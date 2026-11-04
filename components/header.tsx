@@ -43,7 +43,7 @@ export default function Header() {
               last:bg-linear-to-r last:from-[#236BBD] last:to-[#959595] last:hover:brightness-150 last:hover:text-white"
             >
               <Link
-                href={`#${item.toLowerCase().replace(" ", "-")}`}
+                href={`#${item.toLowerCase().replace(/'/g, "").replace(/\s+/g, "-")}`}
                 className="block size-full rounded-full px-4 text-center font-sf xmd:px-0"
                 onClick={() => setIsMenuOpen(false)}
               >
