@@ -6,7 +6,7 @@ export const contactActions = [
   },
   {
     label: "Send an Email",
-    href: "tnamnguyen04@gmail.com",
+    href: "mailto:tnamnguyen04@gmail.com",
     icon: "email",
   },
 ];
