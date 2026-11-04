@@ -133,16 +133,17 @@ function ClientButton({
           {study.niche}
         </span>
       </span>
-      <span
-        aria-hidden="true"
-        className={`flex size-[72px] shrink-0 items-center justify-center rounded-full text-[24px] font-semibold ${
+      <Image
+        src={study.avatar}
+        alt={study.name}
+        width={144}
+        height={144}
+        className={`size-[72px] shrink-0 rounded-full object-cover transition duration-300 ${
           active
-            ? "bg-[linear-gradient(160deg,#306BAD,#306D83)] text-white shadow-[0_0_0_3px_rgba(142,224,236,0.35)]"
-            : "bg-[#22272B] text-[#C9D6DF]"
+            ? "shadow-[0_0_0_3px_rgba(142,224,236,0.35)]"
+            : "opacity-60 grayscale"
         }`}
-      >
-        {study.name.charAt(0)}
-      </span>
+      />
     </button>
   );
 }
