@@ -14,6 +14,7 @@ export interface CaseStudyData {
   id: string;
   name: string;
   niche: string;
+  avatar: string;
   before: CaseImage[];
   after: CaseImage[];
   metrics: CaseMetric[];
@@ -24,6 +25,7 @@ export const caseStudies: CaseStudyData[] = [
   {
     id: "01",
     name: "Mike",
+    avatar: "/imgs/avatars/mike.webp",
     niche: "Travel & lifestyle vlogs",
     before: [
       {
@@ -92,6 +94,7 @@ export const caseStudies: CaseStudyData[] = [
   {
     id: "02",
     name: "MisThy",
+    avatar: "/imgs/avatars/misthy.webp",
     niche: "Gaming & entertainment",
     before: [
       {
@@ -133,6 +136,7 @@ export const caseStudies: CaseStudyData[] = [
   {
     id: "03",
     name: "Jason",
+    avatar: "/imgs/avatars/jason.webp",
     niche: "Technology & software",
     before: [
       {
