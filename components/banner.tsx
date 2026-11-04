@@ -133,7 +133,7 @@ export default function Banner() {
         className="absolute inset-0 bg-[linear-gradient(180deg,transparent_0%,rgba(0,0,0,0.2)_58%,rgba(0,0,0,0.86)_100%)]"
         variants={bannerOverlayVariants}
       />
-      <div className="wrapper wrapper--lg group relative max-h-[84.4rem] h-screen w-screen text-white">
+      <div className="wrapper wrapper--lg group relative max-h-[84.4rem] h-screen w-full text-white">
         <DecorativeShapes />
         {/* text-transparent */}
         {/* [-webkit-text-stroke:1px_rgba(255,255,255,0.4)] */}
