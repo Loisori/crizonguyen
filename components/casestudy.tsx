@@ -13,7 +13,7 @@ export default function CaseStudy() {
       id="case-study"
       className="
       wrapper wrapper--lg
-      relative min-h-[820px] w-screen  overflow-hidden pb-20 pt-32 text-white sm:px-8 lg:min-h-[980px]"
+      relative min-h-[820px] w-full overflow-hidden pb-20 pt-32 text-white sm:px-8 lg:min-h-[980px]"
     >
       {/* <div className="absolute inset-x-0 top-0 h-80 bg-[radial-gradient(circle_at_50%_0%,rgba(255,255,255,0.12),transparent_34%)]" /> */}
       {/* <div className="absolute inset-x-0 bottom-0 h-56 bg-[linear-gradient(180deg,transparent,rgba(0,0,0,0.95))]" /> */}
