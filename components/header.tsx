@@ -10,7 +10,7 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className="fixed top-4 left-4 right-4 z-50 mx-auto max-w-[calc(100%-2rem)] overflow-hidden rounded-3xl bg-[rgba(15,23,42,0.65)] p-2 text-white shadow-[0_30px_80px_-35px_rgba(15,23,42,0.65)] backdrop-blur-xs lg:left-0 lg:right-0 lg:w-fit lg:rounded-full">
+    <header className="fixed top-4 left-4 right-4 z-50 mx-auto max-w-[calc(100%-2rem)] overflow-hidden rounded-3xl bg-[rgba(5,5,5,0.6)] p-2 text-white shadow-[0_30px_80px_-35px_rgba(48,109,131,0.55)] backdrop-blur-xs lg:left-0 lg:right-0 lg:w-fit lg:rounded-full">
       <div className="flex items-center justify-between gap-4 px-3 py-1 xmd:hidden">
         <Link
           href="#about-me"
@@ -40,7 +40,7 @@ export default function Header() {
             <li
               key={item}
               className="text-smaller leading-10 duration-300 hover:bg-white hover:text-black xmd:w-48 xmd:rounded-full xmd:text-small
-              last:bg-linear-to-r last:from-[#236BBD] last:to-[#959595] last:hover:brightness-150 last:hover:text-white"
+              last:bg-linear-to-r last:from-[#306BAD] last:to-[#306D83] last:hover:brightness-150 last:hover:text-white"
             >
               <Link
                 href={`#${item.toLowerCase().replace(/'/g, "").replace(/\s+/g, "-")}`}
