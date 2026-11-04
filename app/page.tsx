@@ -7,8 +7,8 @@ import Workspace from "@/components/workspace";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[linear-gradient(180deg,#f8fafc_0%,#eef2ff_52%,#ffffff_100%)] font-sans">
-      <div className="mx-auto w-full bg-[#111111]">
+    <main className="min-h-screen bg-[#050505] font-sans">
+      <div className="mx-auto w-full bg-[#050505]">
         <Header />
         <Banner />
         <Workspace /> 
