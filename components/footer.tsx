@@ -27,10 +27,10 @@ const fullAnimationTransition = {
 
 const footerSectionVariants: Variants = {
   hidden: {
-    backgroundColor: "#111111",
+    backgroundColor: "#050505",
   },
   visible: {
-    backgroundColor: ["#ffffff", "#ffffff", "#111111"],
+    backgroundColor: ["#ffffff", "#ffffff", "#050505"],
     transition: {
       ...fullAnimationTransition,
       times: [0, 0.5, 1],
@@ -114,14 +114,14 @@ export default function Footer() {
   return (
     <motion.footer
       id="lets-work"
-      className="relative w-full overflow-hidden bg-[#111111] px-5 pt-28 text-white sm:px-10 lg:px-20"
+      className="relative w-full overflow-hidden bg-[#050505] px-5 pt-28 text-white sm:px-10 lg:px-20"
       initial="hidden"
       variants={footerSectionVariants}
       {...animationTriggerProps}
     >
       <motion.div className="contents" variants={stageTwoContainerVariants}>
         <motion.div
-          className="absolute inset-0 bg-[radial-gradient(circle_at_50%_82%,rgba(18,74,255,0.96),transparent_42%),linear-gradient(180deg,#111111_0%,#0a0a0d_48%,#062fc7_100%)]"
+          className="absolute inset-0 bg-[radial-gradient(circle_at_50%_82%,rgba(48,109,131,0.95),transparent_45%),linear-gradient(180deg,#050505_0%,#070c0f_48%,#16313B_100%)]"
           variants={footerBackgroundVariants}
         />
         <motion.div
@@ -193,7 +193,7 @@ export default function Footer() {
               key={action.label}
               href={action.href}
               className="flex w-[38rem] h-[7.5rem] items-center justify-center gap-5 rounded-full border border-white/20 bg-black text-h5 text-[#C5C5C5] shadow-[0_14px_45px_rgba(0,0,0,0.45)] transition-all duration-300 
-              hover:bg-[radial-gradient(circle,_#1C7AE5_0%,_#D8D6D6_100%)] hover:text-black"
+              hover:bg-[radial-gradient(circle,_#8EE0EC_0%,_#C9D6DF_100%)] hover:text-black"
             >
               {action.icon === "instagram" ? <InstagramIcon /> : <EmailIcon />}
               <span>{action.label}</span>
