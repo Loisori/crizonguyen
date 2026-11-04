@@ -12,7 +12,7 @@ export const ProjectItem = [
     variant: "travel",
   },
   {
-    url: "https://www.youtube.com/embed/vby1DXYVm_o?si=inozW4dKltQSNf1r",
+    url: "https://www.youtube.com/embed/SLzEV-s6BVo",
     title: "MarkeizEatsVietnam",
     year: "2026",
     variant: "travel",
