@@ -126,7 +126,7 @@ export default function Banner() {
       {...animationTriggerProps}
     >
       <motion.div
-        className="absolute inset-0 bg-[radial-gradient(circle_at_12%_70%,rgba(18,76,255,0.9),transparent_28%),radial-gradient(circle_at_95%_6%,rgba(17,64,132,0.75),transparent_34%),linear-gradient(115deg,#07080d_0%,#101010_54%,#071932_100%)]"
+        className="absolute inset-0 bg-[radial-gradient(circle_at_12%_70%,rgba(48,109,131,0.85),transparent_30%),radial-gradient(circle_at_95%_6%,rgba(22,49,59,0.8),transparent_36%),linear-gradient(115deg,#050505_0%,#080b0d_54%,#0C1A20_100%)]"
         variants={bannerBackdropVariants}
       />
       <motion.div
