@@ -3,139 +3,286 @@
 import { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { caseStudies, type VideoItem, type CaseStudyData } from "@/constants/casestudy";
+import {
+  caseStudies,
+  type CaseImage,
+  type CaseMetric,
+  type CaseStudyData,
+} from "@/constants/casestudy";
+
+// Note: the site's root font-size is 62.5%, so 1rem = 10px. Sizes below are in px
+// to match the design exactly.
 
 export default function CaseStudy() {
-  const [activeStudy, setActiveStudy] = useState<CaseStudyData>(caseStudies[0]);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const active = caseStudies[activeIndex];
 
   return (
     <section
       id="case-study"
-      className="
-      wrapper wrapper--lg
-      relative min-h-[820px] w-full overflow-hidden pb-20 pt-32 text-white sm:px-8 lg:min-h-[980px]"
+      className="relative overflow-hidden bg-[#050505] px-[24px] pb-[96px] pt-[120px] font-sf text-white"
     >
-      {/* <div className="absolute inset-x-0 top-0 h-80 bg-[radial-gradient(circle_at_50%_0%,rgba(255,255,255,0.12),transparent_34%)]" /> */}
-      {/* <div className="absolute inset-x-0 bottom-0 h-56 bg-[linear-gradient(180deg,transparent,rgba(0,0,0,0.95))]" /> */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute left-1/2 top-[-224px] h-[672px] w-[1024px] max-w-[160vw] -translate-x-1/2 bg-[radial-gradient(closest-side,rgba(48,109,131,0.42),rgba(48,109,131,0))]"
+      />
 
-      <div className="relative z-10 mx-auto max-w-[120rem]">
-        <div className="text-center">
-          <h2 className="text-[clamp(4rem,7vw,9rem)] font-black leading-[0.86] text-white drop-shadow-[0_0_22px_rgba(255,255,255,0.72)]">
-            Case Study
-          </h2>
-          <p className="mt-5 text-[clamp(3.25rem,5vw,6.5rem)] font-black leading-none text-white drop-shadow-[0_0_18px_rgba(255,255,255,0.66)]">
-            {activeStudy.id}
-          </p>
-          <p className="mt-4 text-xl font-medium text-white/60 tracking-wider uppercase">
-            {activeStudy.title}
-          </p>
+      <div className="relative mx-auto flex max-w-[1200px] flex-col gap-[56px]">
+        <h2 className="m-0 font-heathergreen text-[clamp(72px,9vw,128px)] font-normal leading-[0.94] text-white drop-shadow-[0_0_22px_rgba(255,255,255,0.7)]">
+          Case studies
+        </h2>
+
+        {/* Client picker */}
+        <div
+          role="tablist"
+          aria-label="Case studies"
+          className="grid gap-[16px] [grid-template-columns:repeat(auto-fit,minmax(240px,1fr))]"
+        >
+          {caseStudies.map((study, i) => (
+            <ClientButton
+              key={study.id}
+              study={study}
+              active={i === activeIndex}
+              onSelect={() => setActiveIndex(i)}
+            />
+          ))}
         </div>
 
-        {/* Tab Switcher */}
-        <div className="mt-12 flex justify-center">
-          <div className="flex gap-2 rounded-full border border-white/10 bg-zinc-900/60 p-1.5 backdrop-blur-md">
-            {caseStudies.map((study) => {
-              const isActive = activeStudy.id === study.id;
-              return (
-                <button
-                  key={study.id}
-                  onClick={() => setActiveStudy(study)}
-                  className={`relative rounded-full px-8 py-3 text-sm font-bold tracking-wider uppercase transition-all duration-300 cursor-pointer ${
-                    isActive ? "text-black font-extrabold" : "text-white/60 hover:text-white"
-                  }`}
-                >
-                  {isActive && (
-                    <motion.div
-                      layoutId="active-tab-bg"
-                      className="absolute inset-0 rounded-full bg-white"
-                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                    />
-                  )}
-                  <span className="relative z-10">{study.name}</span>
-                </button>
-              );
-            })}
-          </div>
-        </div>
-
-        <div className="relative mt-16 flex items-center justify-between">
-          <p className="text-[clamp(3rem,4.5vw,5.5rem)] font-black text-white drop-shadow-[0_0_18px_rgba(255,255,255,0.75)]">
-            Before
-          </p>
-          <div className="mx-8 h-px flex-1 bg-white/45" />
-          {/* <div className="relative mr-8 hidden h-12 w-12 sm:block">
-            <div className="absolute left-0 top-1/2 h-px w-full bg-white/70" />
-            <div className="absolute right-0 top-1/2 h-8 w-8 -translate-y-1/2 rotate-45 border-r border-t border-white/70" />
-          </div> */}
-          <p className="text-[clamp(3rem,4.5vw,5.5rem)] font-black text-white drop-shadow-[0_0_18px_rgba(255,255,255,0.75)]">
-            After
-          </p>
-        </div>
-
-        {/* Animated case study panels */}
-        <div className="relative mt-12">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeStudy.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.4 }}
-              className="grid gap-8 lg:grid-cols-2"
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={active.id}
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -16 }}
+            transition={{ duration: 0.35 }}
+            className="flex flex-col gap-[56px]"
+          >
+            <Block
+              title="The videos"
+              subtitle="Same channel, before and after my edit"
             >
-              <CasePanel videos={activeStudy.before} tone="before"/>
-              <CasePanel videos={activeStudy.after} tone="after" />
-            </motion.div>
-          </AnimatePresence>
-        </div>
+              <div className="grid items-start gap-[20px] [grid-template-columns:repeat(auto-fit,minmax(288px,1fr))]">
+                <VideoColumn videos={active.before} tone="before" />
+                <VideoColumn videos={active.after} tone="after" />
+              </div>
+            </Block>
+
+            {active.metrics.length > 0 && (
+              <Block
+                title="The numbers"
+                subtitle="Straight from the channel’s analytics"
+              >
+                <div className="grid items-start gap-[20px] md:grid-cols-2">
+                  {active.metrics.map((metric, i) => (
+                    <MetricCard
+                      key={metric.img}
+                      metric={metric}
+                      highlights={i === 0 ? active.highlights : []}
+                    />
+                  ))}
+                </div>
+              </Block>
+            )}
+          </motion.div>
+        </AnimatePresence>
       </div>
     </section>
   );
 }
 
-function CasePanel({
-  videos,
-  tone,
+function ClientButton({
+  study,
+  active,
+  onSelect,
 }: {
-  videos: VideoItem[];
-  tone: "before" | "after";
+  study: CaseStudyData;
+  active: boolean;
+  onSelect: () => void;
 }) {
   return (
-    <div className="relative overflow-hidden">
-      <div
-        className={`absolute inset-0 z-10 pointer-events-none ${
-          tone === "before"
-            ? "bg-[linear-gradient(90deg,rgba(0,0,0,0.84),transparent_30%,transparent_76%,rgba(0,0,0,0.2))]"
-            : "bg-[linear-gradient(90deg,rgba(0,0,0,0.2),transparent_24%,transparent_70%,rgba(0,0,0,0.82))]"
+    <button
+      type="button"
+      role="tab"
+      aria-selected={active}
+      onClick={onSelect}
+      className={`flex min-h-[44px] cursor-pointer items-center justify-between gap-[16px] rounded-[20px] border-0 px-[22px] py-[20px] text-left transition-colors duration-300 ${
+        active
+          ? "bg-[rgba(16,34,42,0.9)] text-white shadow-[0_20px_60px_rgba(48,109,131,0.28)]"
+          : "bg-white/[0.035] text-[#C9D6DF] hover:bg-white/[0.07]"
+      }`}
+    >
+      <span className="flex min-w-0 flex-col gap-[6px]">
+        <span
+          className={`flex items-center gap-[8px] text-[13px] font-semibold tracking-[0.06em] ${
+            active ? "text-[#C9D6DF]" : "text-[#9AA6AE]"
+          }`}
+        >
+          {study.id}
+          {active && (
+            <span className="size-[8px] rounded-full bg-[#8EE0EC]" />
+          )}
+        </span>
+        <span
+          className={`font-heathergreen text-[32px] font-normal leading-[1.05] tracking-[0.01em] ${
+            active ? "text-white" : "text-[#E6EDF2]"
+          }`}
+        >
+          {study.name}
+        </span>
+        <span className="text-[14px] font-light text-[#C9D6DF]">
+          {study.niche}
+        </span>
+      </span>
+      <span
+        aria-hidden="true"
+        className={`flex size-[72px] shrink-0 items-center justify-center rounded-full text-[24px] font-semibold ${
+          active
+            ? "bg-[linear-gradient(160deg,#306BAD,#306D83)] text-white shadow-[0_0_0_3px_rgba(142,224,236,0.35)]"
+            : "bg-[#22272B] text-[#C9D6DF]"
         }`}
-      />
-      <div className="flex flex-col gap-4">
-        {videos.map((video) => (
-          <article
-            key={video.title}
-            className="group flex flex-col sm:flex-row gap-5 rounded-xl border border-white/5 bg-[#151515]/40 p-4 transition-all duration-300 hover:border-white/10 hover:bg-[#1f1f1f]/50 cursor-pointer"
-          >
-            {/* Thumbnail */}
-            <div className="relative w-full shrink-0">
-              <VideoThumb img={video.img} />
-            </div>
-          </article>
-        ))}
+      >
+        {study.name.charAt(0)}
+      </span>
+    </button>
+  );
+}
+
+function Block({
+  title,
+  subtitle,
+  children,
+}: {
+  title: string;
+  subtitle: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="flex flex-col gap-[20px]">
+      <div className="flex flex-wrap items-baseline justify-between gap-[16px]">
+        <h3 className="m-0 font-heathergreen text-[36px] font-normal leading-none">
+          {title}
+        </h3>
+        <span className="text-[14px] font-light text-[#C9D6DF]">
+          {subtitle}
+        </span>
       </div>
+      {children}
     </div>
   );
 }
 
-function VideoThumb({ img }: { img: string;}) {
+function Badge({ tone, children }: { tone: "before" | "after"; children: React.ReactNode }) {
   return (
-    <div className="relative aspect-[4/3] overflow-hidden rounded-lg bg-zinc-900 shadow-[0_18px_45px_rgba(0,0,0,0.28)] border border-white/5 w-full">
-      <Image
-        alt="Video thumbnail"
-        src={img}
-        fill
-        sizes="(max-width: 640px) 100vw, 176px"
-        className="object-cover transition-transform duration-500 group-hover:scale-105"
-      />
+    <span
+      className={`absolute left-[14px] top-[14px] z-10 rounded-full px-[13px] py-[6px] text-[13px] font-semibold ${
+        tone === "after"
+          ? "bg-[#8EE0EC] text-[#050505]"
+          : "bg-[rgba(5,5,5,0.75)] text-[#C9D6DF] backdrop-blur-sm"
+      }`}
+    >
+      {children}
+    </span>
+  );
+}
+
+function VideoColumn({
+  videos,
+  tone,
+}: {
+  videos: CaseImage[];
+  tone: "before" | "after";
+}) {
+  const [selected, setSelected] = useState(0);
+  const main = videos[selected] ?? videos[0];
+  const isAfter = tone === "after";
+
+  return (
+    <div className="flex flex-col gap-[12px]">
+      <div
+        className={`relative overflow-hidden rounded-[20px] ${
+          isAfter
+            ? "bg-[linear-gradient(160deg,#16313B,#0C1A20)] shadow-[0_20px_60px_rgba(48,109,131,0.3)]"
+            : "bg-[#1A1C1E]"
+        }`}
+      >
+        <Badge tone={tone}>{isAfter ? "After" : "Before"}</Badge>
+        <Image
+          key={main.img}
+          src={main.img}
+          alt={main.alt}
+          width={main.width}
+          height={main.height}
+          sizes="(min-width: 1248px) 590px, (min-width: 660px) 50vw, 100vw"
+          className="block h-auto w-full"
+        />
+      </div>
+
+      {videos.length > 1 && (
+        <div className="grid grid-cols-4 gap-[10px]">
+          {videos.map((video, i) => (
+            <button
+              key={video.img}
+              type="button"
+              onClick={() => setSelected(i)}
+              aria-label={`Show: ${video.alt}`}
+              aria-pressed={i === selected}
+              className={`relative cursor-pointer overflow-hidden rounded-[12px] border-0 bg-[#141618] p-0 transition duration-300 ${
+                i === selected
+                  ? isAfter
+                    ? "opacity-100 ring-2 ring-[#8EE0EC]"
+                    : "opacity-100 ring-2 ring-[#C9D6DF]"
+                  : "opacity-55 hover:opacity-90"
+              }`}
+            >
+              <Image
+                src={video.img}
+                alt=""
+                width={video.width}
+                height={video.height}
+                sizes="(min-width: 1248px) 140px, 24vw"
+                className="block aspect-[4/3] h-auto w-full object-cover object-top"
+              />
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function MetricCard({
+  metric,
+  highlights,
+}: {
+  metric: CaseMetric;
+  highlights: string[];
+}) {
+  return (
+    <div className="flex flex-col gap-[12px] rounded-[24px] bg-[rgba(16,34,42,0.55)] p-[16px] backdrop-blur-[20px]">
+      <div className="relative overflow-hidden rounded-[16px] bg-[#0C1A20]">
+        <Badge tone="after">After</Badge>
+        <Image
+          src={metric.img}
+          alt={metric.alt}
+          width={metric.width}
+          height={metric.height}
+          sizes="(min-width: 1248px) 590px, (min-width: 660px) 50vw, 100vw"
+          className="block h-auto w-full"
+        />
+      </div>
+      <div className="flex flex-wrap items-center gap-[8px] px-[4px] pb-[4px]">
+        <span className="mr-[4px] text-[14px] font-light text-[#C9D6DF]">
+          {metric.label}
+        </span>
+        {highlights.map((h) => (
+          <span
+            key={h}
+            className="rounded-full bg-[rgba(142,224,236,0.12)] px-[13px] py-[6px] text-[14px] font-semibold text-[#8EE0EC]"
+          >
+            {h}
+          </span>
+        ))}
+      </div>
     </div>
   );
 }
