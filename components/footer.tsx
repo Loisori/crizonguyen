@@ -113,7 +113,7 @@ export default function Footer() {
 
   return (
     <motion.footer
-      id="let's-work"
+      id="lets-work"
       className="relative left-1/2 w-screen -translate-x-1/2 overflow-hidden bg-[#111111] px-5 pt-28 text-white sm:px-10 lg:px-20"
       initial="hidden"
       variants={footerSectionVariants}
