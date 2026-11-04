@@ -1,118 +1,176 @@
-export interface VideoItem {
-  title: string;
+export interface CaseImage {
+  /** What the picture shows (used as alt text). */
+  alt: string;
   img: string;
+  width: number;
+  height: number;
+}
+
+export interface CaseMetric extends CaseImage {
+  label: string;
 }
 
 export interface CaseStudyData {
   id: string;
   name: string;
-  title: string;
-  before: VideoItem[];
-  after: VideoItem[];
+  niche: string;
+  before: CaseImage[];
+  after: CaseImage[];
+  metrics: CaseMetric[];
+  highlights: string[];
 }
 
 export const caseStudies: CaseStudyData[] = [
   {
     id: "01",
-    name: "Jason",
-    title: "Technology & Software Engineer",
+    name: "Mike",
+    niche: "Travel & lifestyle vlogs",
     before: [
       {
-        title: "My New Desk Setup & Coding Workspace (2026)",
-        img: "/imgs/Jason/before.webp",
+        alt: "How Much I've Spent on Ironman (so far) | Ironman 70.3 (Ep 7)",
+        img: "/imgs/Mike/before.webp",
+        width: 1400,
+        height: 1265,
       },
       {
-        title: "How I Script My Developer Vlogs",
-        img: "/imgs/Jason/before2.webp",
+        alt: "17 Things I Wish I Knew as a Beginner Cyclist | Ironman 70.3 (Ep 5)",
+        img: "/imgs/Mike/before1.webp",
+        width: 1384,
+        height: 1332,
       },
       {
-        title: "A Day in the Life of a Remote Software Engineer",
-        img: "/imgs/Jason/before3.webp",
+        alt: "What a Full Month of Ironman Training Looks Like | Ironman 70.3 (Ep 3)",
+        img: "/imgs/Mike/before3.webp",
+        width: 1400,
+        height: 1271,
       },
     ],
     after: [
       {
-        title: "Why I Stopped Using macOS for Coding",
-        img: "/imgs/Jason/after.webp",
+        alt: "15 Incredible Cycling Accessories from AliExpress: Upgrades for $3 to $50!",
+        img: "/imgs/Mike/after.webp",
+        width: 1396,
+        height: 1248,
       },
       {
-        title: "I Built a Desktop App in 24 Hours (No Sleep)",
-        img: "/imgs/Jason/after2.webp",
+        alt: "These $350 AliExpress Carbon Wheels Are Disrupting the Industry",
+        img: "/imgs/Mike/after2.webp",
+        width: 1400,
+        height: 1238,
+      },
+      {
+        alt: "15 Incredible Cycling Accessories from AliExpress | Ironman 70.3 (Ep 4)",
+        img: "/imgs/Mike/after3.webp",
+        width: 1400,
+        height: 1299,
+      },
+      {
+        alt: "I Learned to Swim Without Getting Tired! | Ironman 70.3 (Ep 2)",
+        img: "/imgs/Mike/after4.webp",
+        width: 1400,
+        height: 1317,
       },
     ],
+    metrics: [
+      {
+        label: "Channel analytics, last 90 days",
+        alt: "YouTube Studio channel analytics: 161,300 views in the last 90 days",
+        img: "/imgs/Mike/after5.webp",
+        width: 2400,
+        height: 1448,
+      },
+      {
+        label: "AliExpress affiliate sales",
+        alt: "AliExpress affiliate transaction report",
+        img: "/imgs/Mike/after6.webp",
+        width: 2400,
+        height: 1560,
+      },
+    ],
+    highlights: ["161.3K views in 90 days"],
   },
   {
     id: "02",
-    name: "Mike",
-    title: "Travel & Lifestyle Vlogs",
+    name: "MisThy",
+    niche: "Gaming & entertainment",
     before: [
       {
-        title: "Reviewing My Old 1080p Camera Gear",
-        img: "/imgs/Mike/before.webp",
+        alt: "MisThy dẫn người ấy đi bụi ở Đà Lạt 7 ngày 7 đêm",
+        img: "/imgs/MisThy/before.webp",
+        width: 1400,
+        height: 1277,
       },
       {
-        title: "My First Time Visiting Japan solo",
-        img: "/imgs/Mike/before1.webp",
+        alt: "Reaction hot Douyin trend 'chạm có vật biến hình'",
+        img: "/imgs/MisThy/before2.webp",
+        width: 1400,
+        height: 1279,
       },
       {
-        title: "How to Edit Cinematic Videos Faster",
-        img: "/imgs/Mike/before3.webp",
+        alt: "25H sống cùng lạc đà Alpaca ở Đà Lạt",
+        img: "/imgs/MisThy/before3.webp",
+        width: 1400,
+        height: 1278,
       },
     ],
     after: [
       {
-        title: "Traveling to the Edge of the World (Full Cinematic Movie)",
-        img: "/imgs/Mike/after.webp",
+        alt: "MisThy thay đổi phong cách với hot Tiktoker Ngân Hà",
+        img: "/imgs/MisThy/after.webp",
+        width: 1400,
+        height: 1277,
       },
       {
-        title: "The Hidden Secrets of Productivity in 2026",
-        img: "/imgs/Mike/after2.webp",
-      },
-      {
-        title: "Inside the Most Luxury Hotel Suite in Hanoi",
-        img: "/imgs/Mike/after3.webp",
-      },
-      {
-        title: "Why You Should Start a Podcast in 2026",
-        img: "/imgs/Mike/after4.webp",
-      },
-      {
-        title: "We Spent 48 Hours Surviving in the Wild Forest",
-        img: "/imgs/Mike/after5.webp",
-      },
-      {
-        title: "The Future of AI-Assisted Development Tools",
-        img: "/imgs/Mike/after6.webp",
+        alt: "24H làm hầu gái nhà bà trùm nông sản Viên Vibi",
+        img: "/imgs/MisThy/after2.webp",
+        width: 1400,
+        height: 1277,
       },
     ],
+    metrics: [],
+    highlights: [],
   },
   {
     id: "03",
-    name: "MisThy",
-    title: "Gaming & Entertainment Creator",
+    name: "Jason",
+    niche: "Technology & software",
     before: [
       {
-        title: "MisThy chơi game cùng đồng bọn (Cười bể bụng)",
-        img: "/imgs/MisThy/before.webp",
+        alt: "Down in the dumps - Ecommerce day 78",
+        img: "/imgs/Jason/before.webp",
+        width: 1400,
+        height: 1092,
       },
       {
-        title: "Thử thách ăn hết 100 món ăn vặt Thái Lan",
-        img: "/imgs/MisThy/before2.webp",
+        alt: "Big channel updates - Ecommerce Day 73",
+        img: "/imgs/Jason/before2.webp",
+        width: 1400,
+        height: 1127,
       },
       {
-        title: "Một ngày làm việc vất vả tại văn phòng mới",
-        img: "/imgs/MisThy/before3.webp",
+        alt: "0 to 10k Followers in 3 Days?? - Ecommerce Day 69",
+        img: "/imgs/Jason/before3.webp",
+        width: 1400,
+        height: 1214,
       },
     ],
     after: [
       {
-        title: "Review nhà hàng chuẩn 5 sao cực sang chảnh",
-        img: "/imgs/MisThy/after.webp",
-      },
-      {
-        title: "Lần đầu trải nghiệm tự lái trực thăng ngắm cảnh",
-        img: "/imgs/MisThy/after2.webp",
+        alt: "The #1 Dropshipping Supplement Mistake That's Costing You THOUSANDS",
+        img: "/imgs/Jason/after.webp",
+        width: 1400,
+        height: 1246,
       },
     ],
+    metrics: [
+      {
+        label: "Video analytics",
+        alt: "YouTube Studio video analytics: 1,330 views since published",
+        img: "/imgs/Jason/after2.webp",
+        width: 2400,
+        height: 1178,
+      },
+    ],
+    highlights: ["1,330 views", "102.5 h watch time", "+49 subscribers"],
   },
 ];
