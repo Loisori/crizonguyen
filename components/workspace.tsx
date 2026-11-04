@@ -56,14 +56,15 @@ export default function WorkspaceVideo() {
   return (
     <section
       id="workspace"
-      className="relative isolate bg-[#050505] px-[16px] py-[64px] sm:px-[24px] lg:py-[96px]"
+      className="relative isolate bg-[#050505] py-[64px] lg:py-[96px]"
     >
       <div
         aria-hidden="true"
         className="pointer-events-none absolute -z-10 left-1/2 top-0 h-[560px] w-[1000px] max-w-[160vw] -translate-x-1/2 bg-[radial-gradient(closest-side,rgba(48,109,131,0.45),rgba(48,109,131,0))]"
       />
       {/* Showreel box */}
-      <div className="mx-auto max-w-[1100px] rounded-[28px] bg-[linear-gradient(160deg,rgba(22,49,59,0.9),rgba(12,26,32,0.9))] p-[12px] shadow-[0_30px_90px_rgba(48,109,131,0.35),inset_0_0_0_1px_rgba(142,224,236,0.14)] sm:p-[18px]">
+      <div className="wrapper wrapper--lg">
+      <div className="rounded-[28px] bg-[linear-gradient(160deg,rgba(22,49,59,0.9),rgba(12,26,32,0.9))] p-[12px] shadow-[0_30px_90px_rgba(48,109,131,0.35),inset_0_0_0_1px_rgba(142,224,236,0.14)] sm:p-[18px]">
       <div className="relative group overflow-hidden rounded-[16px]">
         {/* Video Element */}
         <video
@@ -127,6 +128,7 @@ export default function WorkspaceVideo() {
             </button>
           </div>
         </div>
+      </div>
       </div>
       </div>
     </section>
