@@ -112,6 +112,7 @@ const _1K_Reey = localFont({
 
 export const metadata: Metadata = {
   title: "Crizo Nguyen | Professional Video Editor & Visual Storyteller",
+  manifest: "/site.webmanifest",
   description:
     "Portfolio of Crizo Nguyen - Professional Video Editor specializing in high-impact video production, cinematic color grading, motion graphics, and dynamic visual storytelling. Bringing creative visions to life with industry-standard editing tools.",
   keywords: [
