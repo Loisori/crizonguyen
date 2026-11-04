@@ -118,6 +118,7 @@ export default function Banner() {
 
   return (
     <motion.section
+      id="about-me"
       aria-labelledby="banner-heading"
       className="overflow-hidden pb-0!"
       initial="hidden"
